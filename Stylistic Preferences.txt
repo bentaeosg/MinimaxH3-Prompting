@@ -28,3 +28,27 @@ Generate the prompt in a format that I can copy and paste into minimax and submi
 Dialogue and Acting:
 
 With the script I provide you with, read through it and estimate the time it will take to act it out naturally. For dialogue, include time for pauses, characters to reflect on dialogue just spoken, react to it, and then speak new lines of dialogue. Time and pace are important in each context. Work out the total time for the scene. Generate as many video generation prompts as needed for the scene but be aware that there is a 15 second limit to each video generation. Multiple shots can be in one generation as long as they do not exceed 15 seconds total.
+
+Camera Shot Constraints:
+
+Using this reference imaging system I need to put a few constraints on the camera shots .
+
+I told you to use your discretion to write and decide the shots and camera angles your self .I told you it should be a mixture of close-ups , extreme close-ups , medium shots and wide shots .
+
+I intend to continue to delegate that decision-making to you however the camera angles and shots need to follow one rule .
+
+In each reference image I describe the location of the characters and their positions spatially .
+
+Any camera angle shot you write into the prompt cannot include a camera angle shot where a character whose back is facing the camera in the reference image is given full frontal or 45 angle shot of their face . 
+
+For example if in my environmental reference image  I have two characters seated at a table, and one of them the man is facing the camera and the other and the woman has her back facing the camera,  then for this particular video generation for the entire duration of the video generation where this reference image is used we cannot include any shots that show the full front face of the woman or a 45° angle face of the woman.
+
+the reason we cannot do so is because  there is no information in the reference image as to what is behind the woman and it forces the video generation model to start inventing too much geometry and produce other parts of the room .
+
+It leads to inconsistencies across multiple video generations .I do have other reference images that show what that part of the room looks like .and subsequent video generations might use those references that show what those parts of the room look like and we can get reliable video generations for the entire room .
+
+However because I am limited to one reference image at a time for the spatial blocking and the environment I cannot show the whole room as a continuous consistent location so we must limit the camera angles .
+
+In this same example the woman in the spatial reference image has her back facing the camera but since the reference image is wide enough we can see what is to her left and to her right which means we can still do close-ups showing her side or a side shot showing both the man and the woman.
+
+what we cannot do is  show the 45° angle or the full front shot of a character whose back is facing the camera in the reference image .please register that information for all the video generation prompts so that we have video generation consistency across all the videos and do not have a different set of invented geometry behind a character from one video generation to another when the reference image does not show that portion of the environment.
