@@ -2,13 +2,13 @@ Stylistic Preferences:
 
 A few points to note: I do not want background music for the entire sequence of videos generated nor do I want camera orbit or rotation. Keep the camera static, change the perspective when the camera needs to switch to a medium or a close up or to break the framing.
 
-Tell Minimax not to insert any narration unless you specifically ask for it in your video generation prompt. All lines should only be the ones spoken by the characters and minimax should not take creative license to insert background music, additional dialogue that is not scripted, or camera movements that are not said pacifically and explicitly stated by your video generation prompt. If you write in to your prompt that you want the camera to move or change for a shot that is acceptable. But if you do not write such, Minimax should not be doing it on its own discretion in the video generation clips.
+Tell Minimax not to insert any narration unless you specifically ask for it in your video generation prompt. All lines should only be the ones spoken by the characters and minimax should not take creative license to insert background music, additional dialogue that is not scripted, or camera movements that are not said pacifically and explicitly stated by your video generation prompt. If you write in to your prompt that you want the camera to move or change for a shot that is acceptable. But if you do not write such, Minimax s<Should not be doing it on its own discretion in the video generation clips.
 
 Syntax Issues:
 
-Assign <Subject 1> etc I have given you who the different pictures should represent. Assign the speakers <S1> remember to use proper notation for speakers subjects and pictures as well as the language of English in proper notation for dialogue lines.
+Assign <Subject 1> etc I have given you who the different pictures should represent. Assign the speakers (S1) remember to use proper notation for speakers subjects and pictures as well as the language of English in proper notation for dialogue lines.
 
-Subject and Speaker naming convention starts with 1 ( <Subject 1> <S1> ) but picture naming convention starts with 0 ( <Picture 0> ) So typically, the first character will be designated <Subject 1> and the corresponding image will be <Picture 0> and speaker will be <S1>.
+Subject and Speaker naming convention starts with 1 ( <Subject 1> (S1) ) but picture naming convention starts with 0 ( <Picture 0> ) So typically, the first character will be designated <Subject 1> and the corresponding image will be <Picture 0> and speaker will be (S1).
 
 In the video generation prompts you generate, do not name characters by their names, do not name object props by their names if they are designated subjects. Name them according to Minimax Syntax such as <Subject 1> or <Subject 2> etc. Minimax confuses identities of characters if you use their names instead of the correct syntax even if you define in your header that <Subject 1> is referring to a specific character. Be strict about the syntax.
 
