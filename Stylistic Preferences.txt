@@ -1,0 +1,30 @@
+Stylistic Preferences:
+
+A few points to note: I do not want background music for the entire sequence of videos generated nor do I want camera orbit or rotation. Keep the camera static, change the perspective when the camera needs to switch to a medium or a close up or to break the framing.
+
+Tell Minimax not to insert any narration unless you specifically ask for it in your video generation prompt. All lines should only be the ones spoken by the characters and minimax should not take creative license to insert background music, additional dialogue that is not scripted, or camera movements that are not said pacifically and explicitly stated by your video generation prompt. If you write in to your prompt that you want the camera to move or change for a shot that is acceptable. But if you do not write such, Minimax should not be doing it on its own discretion in the video generation clips.
+
+Syntax Issues:
+
+Assign <Subject 1> etc I have given you who the different pictures should represent. Assign the speakers <S1> remember to use proper notation for speakers subjects and pictures as well as the language of English in proper notation for dialogue lines.
+
+Subject and Speaker naming convention starts with 1 ( <Subject 1> <S1> ) but picture naming convention starts with 0 ( <Picture 0> ) So typically, the first character will be designated <Subject 1> and the corresponding image will be <Picture 0> and speaker will be <S1>.
+
+In the video generation prompts you generate, do not name characters by their names, do not name object props by their names if they are designated subjects. Name them according to Minimax Syntax such as <Subject 1> or <Subject 2> etc. Minimax confuses identities of characters if you use their names instead of the correct syntax even if you define in your header that <Subject 1> is referring to a specific character. Be strict about the syntax.
+
+Important for character continuity:
+
+Spatial blocking reference images provide information on the scene, the lighting, mood, and positions of the characters. But the appearance of the subjects , facial features, and costumes should only come from the picture that is directly linked to the subject. No character appearance information should be coming from the spatial blocking picture. Make this instruction clear to minimax. Sometimes chatgpt generates the spatial images and does a bad job of rendering accurate faces based on my character sheets. Then minimax places too much emphasis on the spatial blocking image and the whole clip contains characters that have drifted from my character sheet substantially.
+
+Camera Movement:
+Sometimes in the past videos generated had the camera move alot. Minimax appears to be fond of taking creative license to make the camera orbit around character faces. I find it distracting when I watch the videos. I am ok with you writing camera movement between shots from a medium shot to a close up to an over the shoulder perspective, to a medium or closeup of the other face etc. But I am not ok with minimax making every character dialogue into an orbit camera movement. In your prompts, be clear to lock the camera in between changing its position for close ups and over the shoulder, medium, wide shots etc. Dont let it orbit. The camera only moves / pans / tracks / orbits when you decide you want it to do so for a specific shot and have written that into your prompt. If your prompt doesn't explicitly state it, minimax should be instructed not to use its discretion to put in such a camera movement.
+
+Prompt Generation Information:
+Please generate the prompts with two pieces of information at the header of each prompt. tell me the duration of the clip, so that i can set it in minimax, and tell me the reference spatial image to use so that i can correctly link it since they are all under the same picture asset tag.
+
+Generate the prompt in a format that I can copy and paste into minimax and submit together with the reference images and set the time duration on my end before submitting a job to queue. If you have decided to make some global rules for all prompts, put them in each prompt. Dont make me look for them and have to copy paste them separately with each video generation prompt I submit.
+
+
+Dialogue and Acting:
+
+With the script I provide you with, read through it and estimate the time it will take to act it out naturally. For dialogue, include time for pauses, characters to reflect on dialogue just spoken, react to it, and then speak new lines of dialogue. Time and pace are important in each context. Work out the total time for the scene. Generate as many video generation prompts as needed for the scene but be aware that there is a 15 second limit to each video generation. Multiple shots can be in one generation as long as they do not exceed 15 seconds total.
