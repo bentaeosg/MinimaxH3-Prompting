@@ -1,0 +1,158 @@
+First Example of how to write video generation prompt:
+
+subject_definitions:
+<Subject 1> is the man whose facial identity and appearance come from <Picture 0>. Preserve his facial identity, facial proportions, hairstyle, and recognizable features from <Picture 0> throughout every shot. He is composed, sensible, well-groomed, and naturally expressive in a restrained way. He wears a pale blue casual office shirt with rolled sleeves and dark trousers.
+
+<Subject 2> is the man whose facial identity and appearance come from <Picture 1>. Preserve his facial identity, facial proportions, bald crown with hair around the sides and back, prescription glasses, brown mustache, and recognizable features from <Picture 1> throughout every shot. He has a slightly chubby build and a naturally distinctive appearance. He wears a muted brown short-sleeve office shirt with a slightly loosened patterned tie. His performance is extremely dry, emotionally restrained, and deadpan.
+
+summary:
+[reference generation] A 9-second live-action late-1990s American workplace sitcom scene featuring <Subject 1> and <Subject 2>, preserving both referenced character identities. The entire scene uses only medium shots and close-ups, with no wide shots or long shots. The humor comes from restrained acting, deadpan delivery, and a silent confused reaction.
+
+retention_analysis:
+<Subject 1>: fully_preserved from <Picture 0> across all shots and expressions.
+
+<Subject 2>: fully_preserved from <Picture 1> across all shots and expressions, including his bald crown, side hair, glasses, brown mustache, facial proportions, and neutral poker-face delivery.
+
+detailed_description:
+Authentic live-action late-1990s American workplace sitcom photography.
+
+The scene takes place inside a slightly outdated corporate office break room during the afternoon. Beige walls, fluorescent ceiling panels, a coffee machine, an old refrigerator, laminate counters, paper coffee cups, a cork notice board with indistinct papers, and softly visible gray office cubicles beyond an interior glass window.
+
+Flat but pleasant fluorescent office lighting mixed with soft daylight. Natural photographed skin, subtle broadcast-era film grain, slightly soft lens rendering, gentle highlight bloom, realistic late-1990s television production design.
+
+No wide shots.
+No long shots.
+No establishing shots.
+
+[Shot 1] MEDIUM TWO-SHOT.
+
+<Subject 1> and <Subject 2> are sitting next to each other at a small break-room table, framed from approximately the waist or lower chest upward.
+
+Both characters remain clearly visible in the same frame.
+
+<Subject 1> sits comfortably with a paper coffee cup in one hand. He appears genuinely relaxed and satisfied with his day.
+
+<Subject 2> sits beside him, quietly holding his own coffee cup, with his usual calm neutral expression.
+
+Without changing the camera angle, <Subject 1> casually looks ahead, gives a small genuine smile and says with sincere enthusiasm:
+
+<d>[English] I love my job!</d>
+
+After saying it, <Subject 1> turns his eyes toward <Subject 2>, expecting a normal response.
+
+<Subject 2> remains silent for a brief beat.
+
+He does not smile.
+
+He slowly turns his eyes toward <Subject 1>.
+
+[Shot 2] At 00:03.200, HARD CUT to a TIGHT CLOSE-UP of <Subject 2>.
+
+His facial identity from <Picture 1> remains clearly preserved.
+
+His face is completely neutral.
+
+Relaxed forehead.
+Still eyebrows.
+Relaxed mouth.
+No smile.
+No grin.
+No playful expression.
+No exaggerated reaction.
+
+He looks directly toward <Subject 1> off-camera.
+
+He pauses briefly as if carefully considering what was just said.
+
+In a calm, flat, completely sincere voice, he says:
+
+<d>[English] Don't love your job. Job your love.</d>
+
+He finishes the sentence without changing his facial expression.
+
+He maintains direct eye contact off-camera, completely convinced that what he has just said is meaningful.
+
+A studio audience laugh begins immediately after the sentence.
+
+[Shot 3] At 00:06.000, HARD CUT to a CLOSE-UP reaction of <Subject 1>.
+
+His earlier smile disappears.
+
+He silently looks toward <Subject 2>.
+
+His eyebrows move slightly inward.
+His eyes narrow subtly.
+His lips press gently together.
+His head pulls backward by a few centimeters and tilts slightly to one side.
+
+His expression develops gradually into restrained confusion, skepticism, and mild disbelief.
+
+He remains silent.
+
+No spoken reaction.
+
+The facial performance stays realistic and understated, as though he is genuinely attempting to understand the strange logic of the sentence.
+
+The studio audience laughter grows naturally during his silent confused reaction.
+
+[Shot 4] At 00:08.000, HARD CUT to a MEDIUM TWO-SHOT of both men sitting beside each other again, matching the framing and positions of the opening shot.
+
+<Subject 1> is still staring silently at <Subject 2> with the same restrained confused expression.
+
+<Subject 2> calmly raises his coffee cup and takes a small sip while maintaining his completely neutral poker face.
+
+Neither character speaks.
+
+The audience laughter fades naturally as the awkward silence continues until the end.
+
+overall_soundscape:
+Quiet corporate break-room ambience throughout: subtle fluorescent electrical hum, distant muted office activity, faint keyboard sounds from outside the room, soft clothing movement, paper cup handling, and occasional coffee-machine ambience. Clean synchronized dialogue. Studio audience laughter begins only after <Subject 2> finishes the line "Don't love your job. Job your love," becomes slightly stronger during <Subject 1>'s confused close-up reaction, then fades during the final two-shot.
+
+non_diegetic_music:
+N/A
+
+Second example:
+
+First Upload your Character photo for reference the use this prompt.
+subject_definitions:
+
+<Subject 1> is the woman in <Picture 0>. Use <Picture 0> as the sole and exact visual reference for her facial identity, face, hair, and overall appearance. Preserve her facial identity exactly throughout the entire target video. For wardrobe, she is wearing a stylish pink hoodie in the target video.
+
+<Subject 2> is the pink Wisp Crisps Pink Salt and Garlic lentil-chip bag. It remains the same physical bag throughout the video, with consistent pink packaging and visible product markings including “Pink Salt and Garlic,” “14g plant protein,” “vegan,” and “gluten free.”
+
+summary:
+
+[reference generation] A 15-second photorealistic UGC-style smartphone video in one uninterrupted take. <Subject 1> sits in a parked car and presents <Subject 2>, opens the bag, removes one crisp, tastes it, slowly chews it while feeling the flavor, and reacts with visible enjoyment. The phone camera is fixed in one stable position inside the car for the entire shot.
+
+retention_analysis:
+
+<Subject 1> (appears throughout [Shot 1]): fully_preserved - preserve the exact facial identity from <Picture 0> in every frame. Maintain stable face, hair, and overall appearance. Wardrobe in the target video is a stylish pink hoodie.
+
+<Subject 2> (appears throughout most of [Shot 1]): fully_preserved - maintain one consistent pink chip bag with stable shape, graphics, product identity, and readable label regions. Never duplicate, replace, morph, or redesign the package.
+
+detailed_description:
+
+The target video is photorealistic UGC smartphone footage captured inside a parked car. The smartphone is not handheld. It is placed in a fixed stable position inside the car, as if resting on the dashboard or mounted securely, facing the subject. No cuts, no camera switching, no time jumps, and no change of angle. The framing remains stable throughout the entire clip.
+
+Natural overcast daylight enters through the car windows. The black car interior is softly lit, with a blurred green field and trees visible outside. Realistic skin texture, natural exposure, slight autofocus breathing, and authentic smartphone image quality. The overall feeling is casual and real, like a natural self-recorded product reaction video.
+
+[Shot 1] One continuous uninterrupted take lasting approximately 15 seconds.
+
+00:00-00:04 — <Subject 1> sits facing the fixed phone camera in a chest-up framing. A grey seatbelt crosses her chest. She wears a stylish pink hoodie. She smiles warmly into the lens and lifts <Subject 2> beside her face, clearly presenting it to camera. In an upbeat natural tone, she says:
+(S1) <d>[English] Okay, these are Wisp Crisps, Pink Salt and Garlic — fourteen grams of plant protein.</d>
+
+00:04-00:07 — Still in the same continuous shot, she rotates <Subject 2> slightly toward the lens so the front label is visible. She brings attention to the packaging naturally, keeping the product readable. The framing stays fixed because the phone is stationary.
+
+00:07-00:09 — She uses both hands to tear open the top seam of the bag. Because the phone is placed in a fixed position, the camera does not move. She then reaches in and removes exactly one crisp, holding it up briefly so it is visible.
+
+00:09-00:15 — She brings the crisp to her mouth and takes one bite. A clear crunch is heard. She does not speak anymore after the first line. Instead, she spends the remaining time naturally chewing and genuinely experiencing the taste. Her reaction is visible through subtle expression changes: slightly widened eyes, a pleased smile forming gradually, a few soft approving nods, and a satisfied, impressed look. She enjoys the flavor in a believable way, letting the tasting moment breathe. Near the end, she lightly raises the bag again beside her face and gives a natural approving expression to camera, without additional dialogue.
+
+Throughout the entire shot, preserve realistic human anatomy and continuity: two hands only, five fingers per hand, one chip bag only, one crisp removed from the bag, physically believable hand motion, stable seatbelt position, and consistent object placement. Maintain exact facial identity from <Picture 0> throughout the clip. No face drift, no morphing, no duplicated limbs, no fused fingers, no disappearing objects, no duplicated packaging, and no sudden spatial jumps.
+
+overall_soundscape:
+
+Quiet parked-car cabin ambience throughout, with faint outdoor atmosphere through the windows. Natural clothing movement, subtle package handling and plastic crinkle, a clear bag-opening tear, one crisp crunch at the bite, and soft natural chewing sounds afterward. <Subject 1>'s voice is naturally recorded by the smartphone microphone. No music.
+
+non_diegetic_music:
+
+None.
