@@ -1,60 +1,23 @@
 Stylistic Preferences:
 
 A few points to note: I do not want background music for the entire sequence of videos generated nor do I want camera orbit or rotation. Keep the camera static, change the perspective when the camera needs to switch to a medium or a close up or to break the framing.
-
 Tell Minimax not to insert any narration unless you specifically ask for it in your video generation prompt. All lines should only be the ones spoken by the characters and minimax should not take creative license to insert background music, additional dialogue that is not scripted, or camera movements that are not said pacifically and explicitly stated by your video generation prompt. If you write in to your prompt that you want the camera to move or change for a shot that is acceptable. But if you do not write such, Minimax s<Should not be doing it on its own discretion in the video generation clips.
 
 Syntax Issues:
-
 Assign <Subject 1> etc I have given you who the different pictures should represent. Assign the speakers (S1) remember to use proper notation for speakers subjects and pictures as well as the language of English in proper notation for dialogue lines.
-
 Subject and Speaker naming convention starts with 1 ( <Subject 1> (S1) ) but picture naming convention starts with 0 ( <Picture 0> ) So typically, the first character will be designated <Subject 1> and the corresponding image will be <Picture 0> and speaker will be (S1).
-
 In the video generation prompts you generate, do not name characters by their names, do not name object props by their names if they are designated subjects. Name them according to Minimax Syntax such as <Subject 1> or <Subject 2> etc. Minimax confuses identities of characters if you use their names instead of the correct syntax even if you define in your header that <Subject 1> is referring to a specific character. Be strict about the syntax.
-
 Important for character continuity:
-
 Spatial blocking reference images provide information on the scene, the lighting, mood, and positions of the characters. But the appearance of the subjects , facial features, and costumes should only come from the picture that is directly linked to the subject. No character appearance information should be coming from the spatial blocking picture. Make this instruction clear to minimax. Sometimes chatgpt generates the spatial images and does a bad job of rendering accurate faces based on my character sheets. Then minimax places too much emphasis on the spatial blocking image and the whole clip contains characters that have drifted from my character sheet substantially.
-
 Camera Movement:
-Sometimes in the past videos generated had the camera move alot. Minimax appears to be fond of taking creative license to make the camera orbit around character faces. I find it distracting when I watch the videos. I am ok with you writing camera movement between shots from a medium shot to a close up to an over the shoulder perspective, to a medium or closeup of the other face etc. But I am not ok with minimax making every character dialogue into an orbit camera movement. In your prompts, be clear to lock the camera in between changing its position for close ups and over the shoulder, medium, wide shots etc. Dont let it orbit. The camera only moves / pans / tracks / orbits when you decide you want it to do so for a specific shot and have written that into your prompt. If your prompt doesn't explicitly state it, minimax should be instructed not to use its discretion to put in such a camera movement.
-
+Sometimes in the past videos generated had the camera move alot. Minimax appears to be fond of taking creative license to make the camera orbit around character faces. I find it distracting when I watch the videos. In your prompts, be clear to lock the camera in between changing its position for close ups and over the shoulder, medium, wide shots etc. Dont let it orbit. The camera only moves / pans / tracks / orbits when you decide you want it to do so for a specific shot and have written that into your prompt. If your prompt doesn't explicitly state it, minimax should be instructed not to use its discretion to put in such a camera movement.
 Prompt Generation Information:
-Please generate the prompts with two pieces of information at the header of each prompt. tell me the duration of the clip, so that i can set it in minimax, and tell me the reference spatial image to use so that i can correctly link it since they are all under the same picture asset tag.
-
+Please generate the prompts with two pieces of information at the header of each prompt. tell me the duration of the clip, so that i can set it in minimax, and tell me the reference spatial images to use so that i can correctly link it /them or storyboard. Describe the composition of what is happening in the spatial image or the storyboard so that I can read it and link the correct one.
 Generate the prompt in a format that I can copy and paste into minimax and submit together with the reference images and set the time duration on my end before submitting a job to queue. If you have decided to make some global rules for all prompts, put them in each prompt. Dont make me look for them and have to copy paste them separately with each video generation prompt I submit.
-
-
 Dialogue and Acting:
-
 With the script I provide you with, read through it and estimate the time it will take to act it out naturally. For dialogue, include time for pauses, characters to reflect on dialogue just spoken, react to it, and then speak new lines of dialogue. Time and pace are important in each context. Work out the total time for the scene. Generate as many video generation prompts as needed for the scene but be aware that there is a 15 second limit to each video generation. Multiple shots can be in one generation as long as they do not exceed 15 seconds total.
-
 Camera Shot Constraints:
-
-Using this reference imaging system I need to put a few constraints on the camera shots .
-
-I told you to use your discretion to write and decide the shots and camera angles your self .I told you it should be a mixture of close-ups , extreme close-ups , medium shots and wide shots .
-
-I intend to continue to delegate that decision-making to you however the camera angles and shots need to follow one rule .
-
-In each reference image I describe the location of the characters and their positions spatially .
-
-Any camera angle shot you write into the prompt cannot include a camera angle shot where a character whose back is facing the camera in the reference image is given full frontal or 45 angle shot of their face . 
-
-For example if in my environmental reference image  I have two characters seated at a table, and one of them the man is facing the camera and the other and the woman has her back facing the camera,  then for this particular video generation for the entire duration of the video generation where this reference image is used we cannot include any shots that show the full front face of the woman or a 45° angle face of the woman.
-
-the reason we cannot do so is because  there is no information in the reference image as to what is behind the woman and it forces the video generation model to start inventing too much geometry and produce other parts of the room .
-
-It leads to inconsistencies across multiple video generations .I do have other reference images that show what that part of the room looks like .and subsequent video generations might use those references that show what those parts of the room look like and we can get reliable video generations for the entire room .
-
-However because I am limited to one reference image at a time for the spatial blocking and the environment I cannot show the whole room as a continuous consistent location so we must limit the camera angles .
-
-In this same example the woman in the spatial reference image has her back facing the camera but since the reference image is wide enough we can see what is to her left and to her right which means we can still do close-ups showing her side or a side shot showing both the man and the woman.
-
-what we cannot do is  show the 45° angle or the full front shot of a character whose back is facing the camera in the reference image .please register that information for all the video generation prompts so that we have video generation consistency across all the videos and do not have a different set of invented geometry behind a character from one video generation to another when the reference image does not show that portion of the environment.
-
-If a character has their back facing the camera do not write any information in your video generation prompts as to what type of facial expressions and emotions they are performing. Minimax will take the liberty to make those characters turn around and face the camera or superimpose the character as an extra copy just to show the facial expressions you write in your prompt. Even if the script has said a character feels a certain way, if they are not facing the camera to show those feelings then just write in your prompt that they are looking at that particular subject in the background and skip all the emotions and expressions. This is one scenario where being overly descriptive will cause the video generation to fail and generate mistakes.
-
 You also need to designate what the subject looks at. Often I have found behavior where subjects all look to the one in the foreground or the one that is speaking dialogue even when they are not supposed to look at that subject.
-
 If I have not been clear in my instructions for each scene as to whether a character has their back facing the camera in the reference image or the spatial blocking and which subject is looking at what in the scene please ask me and clarify before you generate the video generation prompts. Clarification should save us a lot of erroneous video generations.
+If a character has their back facing the camera and a video generation prompt is submitted to you to format into minimax format and there are further descriptions of what the character is doing with their back facing the camera we need to remove all of that from the prompt This is because when minimax generates the video it assumes that we want it to display all of those descriptive passages about what the character is doing even though their back is facing the camera and it will do all kinds of unscripted things to show those actions which we don’t want to see If the back of the character is facing the camera simply delete the content and justice write a simple prompt that the back of the character faces the camera until a time where either the shot changes or the character speaks dialog the character moves whatever else happens in the script and the prompt that requires the character to do something that the camera can see.
+Be clear no background music during the video generations of lately I have begun to see video generation output that contains background music I don’t want any background music I will add it in myself in post production editing. Finally if you have any questions after reading a video generation prompt and you are not sure just clarify with me before generating the prompt because it is better we clarify rather than you give me a prompt I assume everything is locked and then a lot of time is wasted generating video that cannot be used because it does not show what was originally intended.
