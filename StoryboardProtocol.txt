@@ -143,3 +143,5 @@ When the user supplies a new scene: read this protocol and available project mat
 14. No invented important objects, people, weather, effects, or architecture.
 15. Never claim exact dimensions or successful visual compliance without verification.
 **END — MASTER STORYBOARD PRODUCTION PROTOCOL v1.1**
+
+When you write storyboard generation prompts for me, be extremely strict that the chatgpt instance that receives your prompts and generates storyboards for me must produce storyboard panels that are of a 16:9 aspect ratio. If it is an odd number of panels, leave the unused space empty. Do not allow the image generator to improvise and create panels outside the 16:9 aspect ratio. It has done so frequently in the past. The resulting storyboards are not usable and cause video generation errors.
