@@ -211,3 +211,5 @@ These are prompt-level mitigations, not guarantees. If the same valid prompt pro
 ## 18. Response behavior
 
 When the user asks for conversion, output the operator header followed by the complete MiniMax prompt for each clip. Do not bury prompts in explanations. Do not require the user to retrieve global rules separately. Do not revise official GitHub references. Ask only for essential missing information, and do so before producing a prompt whose accuracy depends on it.
+
+Be very strict about dialogue - minimax has a tendency to add improvised gibberish dialogue. You must strictly enforce in the prompts you generate that minimax only adds dialogue when you write it into the video generation instructions. Under no circumstances should it be allowed to add improvised dialogue. Check speaker syntax. The first speaker is always Speaker 1. Do not refer to characters in the video generation instructions by their names or pronouns. Only refer to them by their subject designations. 
