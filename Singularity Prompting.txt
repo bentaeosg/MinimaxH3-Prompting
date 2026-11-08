@@ -1,0 +1,620 @@
+https://huggingface.co/WarmBloodAban/Minimax-h3_Singularity/blob/main/MiniMax_H3_Singularity_Prompt_Writing_Specification_Enhanced_EN.md?utm_source=chatgpt.com
+
+MiniMax H3 Singularity Video Prompt Writing Specification
+Full-Reference Image-to-Video · Enhanced Guide for Action, Camera, VFX, Lighting, Sound, and Continuity Purpose: This document consolidates the Full-Reference prompt structure and the recurring high-value patterns found in the provided MiniMax training-prompt corpus. It is an engineering-oriented writing guide, not a claim about undocumented internal MiniMax rules.
+
+1. Core Design Principles
+A strong H3 prompt should explicitly control the following layers:
+
+Reference — what visual information is inherited from each reference image.
+Composition — framing, shot size, subject placement, foreground/background relationships.
+Action — continuous, physically readable action rather than isolated action labels.
+Camera — position, movement type, direction, speed, amplitude, and what the camera follows.
+Physics / VFX — particles, impact, recoil, debris, cloth/hair response, smoke, light interaction, and other consequences.
+Lighting / Materials — light source, direction, exposure, reflections, surface response, atmosphere, and depth.
+Audio — ambient sound, synchronized effects, dialogue, and music.
+Continuity — identity, spatial direction, object state, damage state, and temporal progression.
+Shot ≈ current composition + subject state + action chain + camera movement + environmental/physical feedback + lighting change + sound/dialogue
+Action chain ≈ initial state → trigger → primary action → displacement/momentum → contact or reaction → final state
+Camera chain ≈ camera position → movement direction → speed → amplitude → subject followed → focus/depth-of-field result
+2. Standard Full-Reference Prompt Structure
+id="x..."
+subject\_definitions:
+...
+summary:
+...
+retention\_analysis:
+...
+detailed\_description:
+...
+overall\_soundscape:
+...
+non\_diegetic\_music:
+...
+The exact field names above should remain stable when the workflow or application expects this structure.
+
+3. subject_definitions
+Use subject definitions to establish persistent identity, appearance, environment, props, and other reference-grounded elements.
+
+Define characters with stable visual identity: face, hair, clothing, body characteristics, and distinctive features.
+Define environments with architecture, terrain, major objects, atmosphere, and visual style.
+Define important props or VFX elements when they need stable visual identity.
+Do not place long time-axis actions here. Put evolving actions in detailed_description.
+If a reference image only defines a character, scene, style, or appearance, connect it to the relevant Subject instead of treating it as an independent video keyframe.
+4. Reference Images: Critical Distinction
+A reference image is not automatically a video character or a first frame. Distinguish between visual inheritance and temporal anchoring.
+
+Use for the actual entity or scene content that should appear in the generated video.
+Use
+as a standalone reference when it genuinely functions as a first frame, keyframe, last frame, or composition anchor.
+If a picture only supplies appearance, identity, clothing, environment, or style, place that relationship inside the Subject definition.
+State clearly when reference-grounded content becomes active if the reference is intended to affect only part of the sequence.
+5. summary
+Summarize the main visual action and its progression. A useful summary describes what happens, how it develops, and the resulting state—not merely the plot premise.
+
+6. retention_analysis
+Use retention relationships consistently when the format requires them:
+
+fully_preserved — the referenced element remains substantially unchanged.
+partially_preserved — only selected properties are retained.
+attribute_transfer — selected visual attributes are transferred to another generated element.
+weak_reference — the reference provides loose visual guidance.
+newly_generated — the element is created without meaningful reference inheritance.
+For audio: fully_copy, partially_copy, reference, weak_reference.
+7. detailed_description — The Core Field
+Organize the description shot-by-shot in playback order. Each shot should answer seven practical questions: what is visible, where the subject is, what state it starts in, what it continuously does, how the camera moves, what visual/physical feedback occurs, and what is heard.
+
+\[Shot 1] \[shot size / camera position] establishes \[subject position + composition].
+\[Subject] begins in \[initial state], then \[trigger/action initiation].
+As \[primary action] continues, \[body movement / displacement / prop movement].
+The camera \[movement] at \[speed/amplitude], keeping \[subject] in \[composition relationship].
+At the moment of \[contact / impact / emotional change], \[VFX / physical response / lighting change] occurs.
+The shot ends with \[final pose / final state], while \[sound/dialogue] continues or resolves.
+For later shots, use explicit timestamps such as:
+
+\[Shot 2] At 00:03.000, ...
+Shot 1 has no timestamp in the recommended structure; later shots should use timestamps when temporal precision matters.
+
+8. Action Writing: From Labels to Processes
+Avoid isolated verbs such as “walks,” “attacks,” “turns,” or “explodes” when the action needs to be visually reliable. Expand them into a causal sequence.
+
+Preparation → Trigger → Acceleration → Primary action → Contact → Reaction → Recovery → Final state
+Weak:
+
+The warrior attacks the enemy.
+Stronger:
+
+The warrior lowers his center of gravity, shifts one foot forward, draws the sword back, then accelerates into a forward slash. The blade cuts across the frame with visible momentum; the opponent recoils from the impact, while loose fabric and dust react to the movement. The warrior completes the follow-through and settles into a guarded stance.
+For distant characters, explicitly preserve continuous movement: The two distant characters continue walking throughout the shot at a steady pace; their steps remain continuous even though their small scale makes the movement visually subtle.
+
+9. Camera / Cinematography
+Avoid vague phrases such as “dynamic camera” or “cinematic camera.” Specify the camera behavior.
+
+Tracking shot — follows a moving subject along a defined path.
+Push-in — camera moves toward the subject, increasing visual emphasis.
+Pull-back — camera retreats to reveal space or reduce emphasis.
+Pan — camera rotates horizontally.
+Tilt — camera rotates vertically.
+Orbit / arc — camera moves around the subject while maintaining a spatial relationship.
+Swoop — camera travels through space with a pronounced curved or diving trajectory.
+Whip-pan — rapid directional rotation, useful for transitions or sudden changes.
+Dive / plunge — camera moves sharply downward or forward from an elevated viewpoint.
+Barrel roll — camera rotates around the lens axis while moving through space.
+Handheld — controlled small-scale camera shake suggesting physical presence or instability.
+Static / locked-off — camera remains fixed while the action unfolds. A robust camera specification contains five elements: camera position / shot size + movement + direction + speed / amplitude + subject to follow Bind the camera to the action. For example, a side-tracking camera can maintain a character in profile while matching the character's running speed; a push-in can accelerate toward the instant of impact.
+10. VFX and Physical Feedback
+Do not write only “add cool effects.” Describe the trigger, visual form, motion, and environmental consequence.
+
+VFX ≈ trigger condition + form + direction/motion + interaction with environment/subjects
+Energy / magic — describe emission point, shape, direction, intensity, travel path, and impact.
+Explosion — specify the ignition/impact point, expanding fire/smoke, debris trajectory, pressure wave, and environmental response.
+Sparks — specify source, density, direction, brightness, and decay.
+Smoke / dust — specify origin, expansion, drift, turbulence, and interaction with light.
+Fragments — specify what breaks, fragment direction, scale, and momentum.
+Liquid / blood — specify the impact source, spray direction, droplets, and subsequent settling.
+Rifts / portals — specify formation, edge behavior, internal motion, emission, and disappearance.
+Lightning — specify origin, branching, flash timing, illumination, and contact effect. Always consider physical feedback: hair and clothing react to force, weapons recoil, dust rises from footsteps, ice cracks under pressure, nearby surfaces receive light from explosions, and particles inherit momentum from impacts.
+11. Lighting, Materials, and Visual Texture
+Replace generic quality language with concrete visual controls.
+
+Light source and direction.
+Warm/cool or otherwise specified light characteristics when important.
+Exposure and contrast changes.
+Reflections and wet-surface response.
+Volumetric light, haze, smoke, or atmospheric depth.
+Depth of field and focus transitions.
+Motion blur only when justified by rapid motion.
+Material response: skin, metal, fabric, glass, water, ice, stone, etc. Words such as “cinematic,” “epic,” “high quality,” and “dynamic” can support a description, but should never replace observable visual instructions.
+12. Multi-Shot Timeline and Continuity
+Write shots in playback order and preserve causal continuity.
+
+Maintain consistent screen direction unless a deliberate reversal is specified.
+Track weapon position, body pose, object ownership, and prop state between shots.
+Carry damage, dirt, blood, smoke, broken objects, and other persistent states forward when appropriate.
+Maintain consistent character identity and clothing.
+Preserve the intended reference-image anchor when a picture is used as a keyframe.
+Synchronize sound effects with visible impacts and actions.
+Use timestamps for later shots when precise timing matters.
+13. Character Acting and Emotion
+Convert abstract emotions into observable micro-actions.
+
+Eyes: gaze direction, blinking, widening, narrowing, tracking.
+Face: eyebrow movement, lip tension, jaw movement, smile/frown changes.
+Breathing: chest or shoulder movement, visible recovery after exertion.
+Posture: shoulders, spine, head angle, center of gravity.
+Hands: grip tension, finger movement, hesitation, release.
+Attention: explicitly state what the character looks at or reacts to. Instead of only saying “she looks nervous,” describe the behavior: her gaze shifts toward the doorway, her lips tighten, her breathing becomes shallow, and her fingers repeatedly adjust their grip.
+14. Dialogue, Soundscape, and Music
+Keep speaker identities stable across shots.
+
+(S1) speaks: "..."
+(S2) replies: "..."
+Use stable speaker IDs such as (S1), (S2), etc.
+Synchronize dialogue with visible mouth movement when the format requires it.
+Place important diegetic effects in the overall_soundscape.
+Use non_diegetic_music for background score rather than mixing it with physical scene sounds.
+Synchronize footsteps, impacts, weapon clashes, explosions, wind, water, and other effects with visible events.
+15. Reusable High-Value Templates
+15.1 Distant Continuous Walking
+\[Shot 1] A wide establishing shot shows <Subject 1> and <Subject 2> far in the background.
+Both subjects continue walking steadily along the path throughout the entire shot, maintaining consistent direction and spacing.
+The camera performs a slow lateral tracking movement, keeping the distant figures within the wide composition.
+Their clothing and hair move subtly with the surrounding breeze, while the environment remains visually dominant.
+15.2 Wuxia / Xianxia Combat
+\[Shot 1] A medium-wide side angle frames <Subject 1> and <Subject 2> in opposing positions.
+<Subject 1> shifts into a lower stance, draws the weapon backward, then launches forward with accelerating momentum.
+The camera tracks laterally with the attack, then arcs around the point of contact.
+At impact, sparks and dust burst outward, the opponent recoils, clothing and hair react to the force, and loose debris is displaced across the ground.
+The attacker completes the follow-through and settles into a controlled stance.
+15.3 Explosion / Disaster
+\[Shot 1] The camera begins in a stable wide shot as <Subject 1> stands near the center of the environment.
+A sudden trigger occurs behind the subject, followed by a rapidly expanding explosion.
+The camera pulls backward while panning to keep the subject and blast inside the frame.
+Fire, smoke, debris, dust, and fragments expand outward; nearby surfaces are illuminated by the flash and respond to the pressure wave.
+The shot ends as the initial blast subsides into drifting smoke and falling debris.
+15.4 Magic / Energy Effect
+\[Shot 1] <Subject 1> raises one hand and gathers a concentrated energy field around the palm.
+The energy intensifies from a small glow into a dense rotating mass, with particles spiraling inward before being released forward.
+The camera pushes toward the hand, then tracks the energy projectile as it travels through the environment.
+At impact, a shockwave expands outward, nearby dust and loose objects are displaced, and the surrounding surfaces receive a brief burst of colored illumination.
+16. Common Failure Modes
+Using only generic descriptors such as cinematic, dynamic, epic, or high-definition.
+Treating every reference image as an automatic first frame.
+Using one-word actions instead of continuous action chains.
+Writing “dynamic camera” without movement type, direction, speed, or subject relationship.
+Writing “cool VFX” without trigger, form, motion, or physical consequence.
+Applying heavy motion blur to every movement.
+Packing too many simultaneous actions into one shot.
+Redefining the same Subject inconsistently across shots.
+Failing to synchronize sound with visible events.
+Describing emotions abstractly without observable acting.
+Failing to state continuous walking when distant characters are intended to keep walking.
+17. Final Quality Checklist
+Is every important reference image clearly assigned a purpose?
+Are Subject identities stable?
+Does every major action have a beginning, progression, reaction, and ending state?
+Is camera movement concrete and connected to the action?
+Are VFX tied to physical triggers and consequences?
+Are lighting and material changes observable rather than generic?
+Are sounds synchronized with visible events?
+Are speaker IDs stable?
+Is continuity preserved between shots?
+Are distant/background actions explicitly described when they must continue?
+Have unnecessary generic adjectives been replaced with concrete visual information?
+18. Copyable Master Template
+id="x..."
+
+subject\_definitions:
+<Subject 1>: \[identity / appearance / clothing / distinctive features / reference relationship]
+<Subject 2>: \[identity / appearance / clothing / distinctive features / reference relationship]
+<Environment>: \[location / architecture / terrain / atmosphere / lighting]
+<Prop or VFX>: \[appearance / material / persistent characteristics]
+
+summary:
+\[Main action progression and final state]
+
+retention\_analysis:
+\[Reference → Subject relationships and preservation level]
+
+detailed\_description:
+\[Shot 1] \[shot size / camera position] establishes \[composition].
+\[Subject] begins in \[initial state], then \[trigger].
+As \[primary action] continues, \[body / prop / environmental movement].
+The camera \[movement] toward / along / around \[direction], at \[speed / amplitude], following \[subject].
+At \[impact / contact / emotional beat], \[VFX / physics / lighting response].
+The shot ends with \[final state].
+
+\[Shot 2] At 00:03.000, \[new composition and continuing state].
+\[Action progression + camera + physical response + sound].
+\[Continue as needed.]
+
+overall\_soundscape:
+\[Ambient environment + synchronized diegetic effects + dialogue]
+
+non\_diegetic\_music:
+\[Music style / intensity / progression, if applicable]
+19. Single-Shot High-Quality Example
+\[Shot 1] A low-angle medium-wide tracking shot frames the warrior in the foreground, with the opponent several meters ahead on the same axis.
+The warrior begins in a compressed defensive stance, shoulders lowered and sword held close to the body. He shifts his rear foot forward, rotates his hips, draws the blade backward, and suddenly accelerates into a forward charge.
+The camera tracks backward at matching speed, maintaining the warrior in the lower-center of the frame while preserving the opponent in the background.
+As the warrior closes the distance, the blade swings upward and transitions into a diagonal slash. At the instant of contact, bright sparks burst from the collision point, dust lifts from the ground, and both characters' clothing and hair react to the force.
+The opponent is pushed backward several steps, briefly loses balance, then regains footing. The warrior completes the follow-through and lowers the blade into a guarded stance.
+The camera performs a small arc around the contact point and settles into a wider composition as the dust begins to disperse.
+Footsteps, cloth movement, the metallic impact, and drifting environmental ambience remain synchronized with the visible action.
+The example is intentionally concrete: it specifies starting state, action progression, camera behavior, physical response, final state, and synchronized sound instead of relying on generic quality adjectives.
+
+20. Training-Corpus-Derived High-Value Patterns
+The following patterns are especially useful because they repeatedly improve action readability and visual specificity in the provided training material:
+
+Use explicit camera verbs: track, push in, pull back, pan, tilt, orbit, arc, swoop, dive, whip-pan, barrel roll.
+Use action verbs that imply visible mechanics: shift weight, brace, draw back, accelerate, lunge, swing through, recoil, stagger, recover, settle.
+Describe environmental response: dust, sparks, fragments, smoke, cloth, hair, reflections, debris, pressure waves.
+Connect cause and effect: trigger → movement → impact → reaction.
+Use temporal transitions: initially, then, as the action continues, at the moment of impact, afterward, finally.
+Keep the camera and action synchronized rather than describing them as unrelated lists.
+Use concrete lighting and material behavior instead of generic quality claims. These are corpus-derived writing patterns. They should be treated as practical prompt-engineering guidance rather than undocumented official MiniMax implementation rules.
+21. Recommended Prompt-Building Workflow
+Define the reference relationship first: what is inherited and what is newly generated.
+Lock the persistent Subject and Environment descriptions.
+Write the composition and starting state of each shot.
+Expand the main action into a continuous causal chain.
+Add camera movement that physically follows or emphasizes the action.
+Add VFX and environmental reactions at the exact trigger points.
+Add lighting/material changes that result from the event.
+Add synchronized sound and dialogue.
+Check continuity across the timeline.
+Remove vague filler and replace it with observable details.
+
+
+
+
+
+
+# 22. SUPPLEMENTARY INTEGRATION PROTOCOL — COMPATIBILITY WITH EXISTING MINIMAX H3 GUIDELINES
+
+## 22.1 Purpose and Authority
+
+This supplementary section defines how the MiniMax H3 Singularity Video Prompt Writing Specification must be interpreted and applied when used alongside the following established reference documents:
+
+1. **Official Minimax Prompting Guidelines.txt**
+2. **Minimax Positive Prompts.txt**
+3. **Stylistic Preferences.txt**
+4. **DialogueProtocol.txt**
+5. **Singularity Prompting.txt** (this document)
+
+The Singularity specification is an **enhancement layer**, not a replacement for the existing MiniMax prompting framework.
+
+Its primary purpose is to improve the precision, physical realism, cinematography, action choreography, VFX descriptions, lighting, and continuity of MiniMax H3 Full-Reference video prompts.
+
+All five documents must be treated as complementary wherever possible.
+
+Where instructions conflict, the conflict-resolution rules below are mandatory.
+
+## 22.2 Document Priority and Conflict Resolution
+
+When multiple reference documents are available, apply the following authority hierarchy:
+
+**Priority 1 — Official Minimax Prompting Guidelines**
+
+Controls the fundamental MiniMax prompt syntax, required section names, reference-image conventions, dialogue formatting, and other explicitly documented format requirements.
+
+**Priority 2 — Stylistic Preferences**
+
+Controls the user's mandatory production preferences, including storyboard fidelity, permitted camera movements, creative restrictions, music exclusions, and limitations on introducing new visual content.
+
+**Priority 3 — DialogueProtocol**
+
+Controls dialogue generation, speaker identification, dialogue timing, speech ownership, vocal performance, and safeguards against repeated, missing, incorrectly assigned, or improvised dialogue.
+
+For dialogue-specific matters, this protocol takes precedence over general dialogue examples in other documents, provided the required MiniMax syntax is preserved.
+
+**Priority 4 — Singularity Prompting Specification**
+
+Provides supplementary technical guidance for detailed action chains, cinematography, physical reactions, VFX, lighting, material behavior, shot progression, and continuity.
+
+Its recommendations must operate within the boundaries established by the higher-priority documents.
+
+**Priority 5 — Minimax Positive Prompts**
+
+Provides examples and proven descriptive techniques that can inform prompt quality but must not override mandatory instructions or production constraints.
+
+These priorities determine how to resolve conflicts, not the order in which reference documents must be read.
+
+## 22.3 Fundamental Conversion Principle
+
+**The MiniMax conversion process is a faithful translation and technical enhancement task, not an independent creative reinterpretation.**
+
+When converting an existing Seedance 2.0 video prompt or storyboard into MiniMax H3 Singularity format:
+
+- Preserve the original narrative intent, action sequence, visual composition, character identities, and emotional direction.
+- Preserve the original number and sequence of shots unless explicitly instructed otherwise.
+- Preserve dialogue exactly, including speaker ownership and intended delivery.
+- Preserve established spatial relationships, screen direction, and environmental continuity.
+- Do not introduce new actions, character movements, dialogue, camera movements, props, visual effects, or narrative events merely to make the prompt more cinematic.
+- Use Singularity's technical methods to describe authorized content more clearly, physically, and precisely.
+
+**Technical elaboration is permitted. Creative invention is not.**
+
+For example, an authorized punch may be described through body mechanics, weight transfer, acceleration, contact, recoil, and recovery.
+
+However, the converter must not add an additional punch, kick, weapon strike, or stunt that was not present in the original instructions.
+
+## 22.4 Camera Movement Restrictions
+
+Singularity recommends precise camera instructions, including tracking, pushing, pulling, panning, tilting, orbiting, swooping, and other cinematic movements.
+
+These recommendations do not automatically authorize camera movement.
+
+The following rules apply:
+
+1. If the original prompt specifies a locked or static camera, preserve that restriction.
+2. If the original prompt specifies camera movement, describe the authorized movement with Singularity-level precision.
+3. If camera movement is not authorized and the established Stylistic Preferences require a locked camera, maintain a locked camera.
+4. Do not introduce camera movement solely to increase visual excitement.
+5. Do not replace an authorized camera movement with a different movement without explicit instruction.
+
+When camera movement is authorized, describe its direction, speed, amplitude, subject relationship, framing, and intended visual result.
+
+**Camera precision must never override camera fidelity.**
+
+## 22.5 Action Choreography and Physical Realism
+
+Singularity's action-chain methodology should be applied to all relevant physical actions.
+
+Recommended structure:
+
+Preparation → Trigger → Acceleration → Primary Action → Contact → Reaction → Recovery → Final State
+
+However, this structure is descriptive rather than prescriptive.
+
+Not every action requires every stage, and stages must not be invented merely to complete the sequence.
+
+For existing authorized actions, enhance the description using:
+
+- Physically plausible body mechanics and weight distribution.
+- Continuous movement and momentum.
+- Clear interaction between characters, props, and surroundings.
+- Natural impact responses and recovery.
+- Consistent movement direction and spatial relationships.
+- Explicit starting and ending states.
+
+The objective is to make the original action easier for MiniMax to interpret and generate accurately.
+
+**Physical specificity must improve the original choreography, not change it.**
+
+## 22.6 VFX and Environmental Feedback
+
+Singularity encourages explicit descriptions of explosions, sparks, smoke, debris, dust, energy effects, impact reactions, and environmental consequences.
+
+These descriptions are permitted only when they represent:
+
+1. Effects already present in the source prompt.
+2. Natural physical consequences directly implied by an authorized action.
+3. Additional effects expressly requested by the user.
+
+Do not introduce new explosions, supernatural effects, destruction, environmental transformations, or other significant visual events without authorization.
+
+When describing permitted VFX, specify:
+
+- Trigger or origin.
+- Physical appearance and material behavior.
+- Direction, speed, and progression.
+- Interaction with subjects and surroundings.
+- Lighting and environmental consequences.
+- Dissipation or final state.
+
+Natural secondary reactions, such as clothing responding to movement or dust reacting to an established impact, may be described when consistent with the source scene.
+
+Do not exaggerate minor actions into major spectacle.
+
+## 22.7 Reference-Image Interpretation and Ordering
+
+Maintain the established reference-image order:
+
+**`<Picture 0>` — Storyboard Prompt / Storyboard Image**
+
+Primary reference for the intended composition, blocking, visual action, camera framing, and scene progression.
+
+**`<Picture 1>` — Character 1**
+
+Character identity, facial appearance, hairstyle, costume, and other persistent visual characteristics.
+
+**`<Picture 2>` — Character 2 (if applicable)**
+
+Second character's identity, appearance, costume, and persistent characteristics.
+
+Additional references may be included when supplied and required.
+
+Important distinctions:
+
+- A character reference is not automatically a video keyframe.
+- A costume or environment reference is not automatically the first frame.
+- A storyboard may function as a composition and continuity reference without requiring literal reproduction of every panel as an opening frame.
+- Clearly associate each reference with the appropriate subject or environment.
+- Do not confuse visual inheritance with temporal anchoring.
+- Do not introduce characters or environments solely because their reference images are available.
+
+The existing MiniMax reference and retention conventions remain authoritative.
+
+Do not introduce additional retention markers, including `newly_generated`, as mandatory syntax unless supported by the applicable official specification or expressly authorized by the user.
+
+## 22.8 Dialogue Protocol — Mandatory Override
+
+The established **DialogueProtocol.txt** remains the controlling authority for all dialogue-related decisions.
+
+Singularity's general speaker-identification recommendations are supplementary and must not replace the established dialogue safeguards.
+
+All dialogue generation must follow these principles:
+
+**Speaker identity**
+
+- Assign speaker identifiers consistently according to the established protocol.
+- Never transfer dialogue to another character.
+- Clearly distinguish speaking characters from silent characters.
+- Preserve speaker identity across shot transitions.
+
+**Exact dialogue preservation**
+
+- Preserve every authorized spoken line exactly.
+- Do not paraphrase, extend, repeat, or improvise dialogue.
+- Do not generate additional speech, filler words, or unintelligible vocalizations.
+- Use the required MiniMax dialogue syntax, including `<d>[English] ...</d>` where applicable.
+
+**Timing and synchronization**
+
+- Place dialogue within the correct shot and temporal interval.
+- Allow sufficient time for natural delivery.
+- Synchronize visible mouth movements with the correct speaker.
+- Avoid overlapping dialogue unless explicitly scripted.
+- Ensure each line is spoken only once at its intended moment.
+
+**Voice acting and emotional performance**
+
+- Specify delivery consistent with the character's visible emotional state.
+- Describe relevant tone, intensity, pace, hesitation, breath, and vocal texture.
+- Ensure vocal performance matches facial expression, posture, and physical acting.
+- Avoid robotic, emotionally disconnected, or exaggerated delivery.
+
+**Speech contamination prevention**
+
+- Do not assign speech to characters intended to remain silent.
+- Do not allow dialogue to continue into later shots unless explicitly intended.
+- Do not repeat earlier dialogue as background speech.
+- Do not introduce improvised conversation or unintelligible speech.
+
+Any dialogue-related ambiguity must be resolved using DialogueProtocol.txt rather than Singularity's shorter general examples.
+
+## 22.9 Soundscape and Background Music
+
+The `overall_soundscape` section should describe authorized diegetic audio, including:
+
+- Environmental ambience.
+- Footsteps and body movement.
+- Clothing and prop sounds.
+- Physical impacts and mechanical effects.
+- Explosions and environmental reactions.
+- Dialogue and appropriate nonverbal vocal performance.
+
+All significant sounds should be synchronized with the corresponding visible actions.
+
+The `non_diegetic_music` section must remain in the required prompt structure.
+
+However, the user's established production preference prohibits AI-generated background music because musical scoring is added separately during post-production.
+
+Therefore:
+
+**Do not request or generate background music unless the user explicitly overrides this restriction.**
+
+Where necessary, use an explicit no-background-music instruction in the `non_diegetic_music` section.
+
+Do not interpret Singularity's music examples as permission to introduce a soundtrack.
+
+## 22.10 Shot Timing and Temporal Continuity
+
+Maintain the established MiniMax shot structure:
+
+`[Shot 1]` — Opening shot, normally without an initial timestamp.
+
+`[Shot 2] At 00:03.000, ...` — Subsequent shot with explicit timing when required.
+
+Continue in playback order.
+
+For every shot:
+
+1. Establish the initial composition and subject state.
+2. Describe the authorized action as a continuous progression.
+3. Specify camera behavior within the permitted restrictions.
+4. Describe relevant physical and environmental responses.
+5. Preserve the final state for continuity into the next shot.
+6. Synchronize dialogue and sound with visible events.
+
+Do not compress or rearrange actions in ways that alter narrative meaning.
+
+Do not exceed the specified video duration.
+
+Ensure that dialogue, action, and camera instructions are realistically achievable within the allocated time.
+
+## 22.11 Technical Detail and Prompt Length
+
+Singularity should be used to increase **meaningful descriptive precision**, not unnecessary verbosity.
+
+Prompts should be sufficiently detailed to communicate:
+
+- Exact subject identity and placement.
+- Composition and spatial relationships.
+- Continuous action mechanics.
+- Camera behavior.
+- Physical reactions and VFX.
+- Lighting and material response.
+- Emotional acting.
+- Dialogue ownership and vocal performance.
+- Sound synchronization.
+- Continuity between shots.
+
+Do not shorten complex actions into vague summaries.
+
+Do not replace precise instructions with generic adjectives such as "epic," "dynamic," "cinematic," or "high quality."
+
+Conversely, do not inflate a simple scene with unnecessary action, camera movement, or effects.
+
+**Prompt detail should be proportional to the complexity of the authorized scene.**
+
+## 22.12 Mandatory Pre-Output Quality Audit
+
+Before delivering any MiniMax H3 Singularity prompt, verify the following:
+
+**Structural compliance**
+- All six required prompt sections are present.
+- Required MiniMax syntax and reference conventions are respected.
+- Reference images are correctly assigned.
+
+**Storyboard and source fidelity**
+- All authorized shots and actions are preserved.
+- No unauthorized actions, dialogue, camera movements, or VFX have been introduced.
+- Character identity, costumes, and environment remain consistent.
+
+**Action and cinematography**
+- Major actions are physically readable.
+- Camera instructions are precise and authorized.
+- Movement, impact, reaction, and recovery are coherent.
+- Environmental feedback is appropriate and not exaggerated.
+
+**Dialogue reliability**
+- Dialogue matches the source exactly.
+- Speaker identities are correct and stable.
+- Lines are assigned to the correct shots.
+- Speech is not repeated or improvised.
+- Vocal performance matches visible acting.
+- Dialogue timing is feasible.
+
+**Audio**
+- Sound effects are synchronized with visible actions.
+- No unauthorized background music is requested.
+- Silence and non-speaking characters are respected.
+
+**Continuity**
+- Character positions and screen direction remain coherent.
+- Props, costumes, damage, and environmental states persist appropriately.
+- Shot transitions preserve logical temporal progression.
+
+If a material conflict or ambiguity cannot be resolved from the available source documents, request clarification rather than inventing a solution.
+
+## 22.13 Final Governing Principle
+
+The following principle governs every conversion using this specification:
+
+**Preserve the original creative intent. Preserve the established MiniMax syntax. Preserve the user's production restrictions. Apply Singularity to maximize technical clarity, physical realism, cinematic precision, and generation reliability without introducing unauthorized creative changes.**
+
+Singularity is the technical enhancement layer.
+
+The established MiniMax guidelines provide the structural foundation.
+
+Stylistic Preferences protect the intended visual direction.
+
+DialogueProtocol protects speech accuracy and performance.
+
+Positive Prompts provide supporting examples.
+
+Together, these documents form a unified prompting framework for MiniMax H3 Full-Reference video generation.
+
+**END OF SUPPLEMENTARY INTEGRATION PROTOCOL**
