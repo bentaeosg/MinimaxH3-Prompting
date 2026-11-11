@@ -1,118 +1,84 @@
-# Dialogue Reliability Protocol — Supplementary Rules v1.0
+# Dialogue Reliability Protocol — Supplementary Rules v1.1
 
-**Purpose:** Reduce improvised, unintelligible, non-English, incorrectly attributed, or mistimed dialogue in MiniMax H3 video generation.
+**Purpose:** Reduce improvised, unintelligible, non-English, incorrectly attributed, repeated, out-of-order, or mistimed dialogue in MiniMax H3 full-reference video generation.
 
-These rules supplement the Official MiniMax Prompting Guidelines and existing Stylistic Preferences. They do not supersede official syntax or authorize changes to the approved storyboard.
+**Status:** Revised from v1.0 following Scene 2 production repairs. Supplements the Official MiniMax Prompting Guidelines and Stylistic Preferences; does not override official syntax, reference order, screenplay, or approved storyboard. These are prompting controls and troubleshooting hypotheses, not guarantees of deterministic speech synthesis.
 
-### 1. Exact-dialogue priority
+## 1. Exact-dialogue priority and private manifest
 
-For every video containing dialogue, construct a private dialogue manifest before drafting the prompt.
+Before drafting, construct a private chronological dialogue manifest recording: (a) exact verbatim scripted words and punctuation, (b) speaking character and stable `<Subject N>`, (c) global `(Sx)` speaker ID assigned by first vocal occurrence, (d) assigned shot and storyboard panel, (e) start/end of the shot and feasible speaking interval, (f) whether the speaker is visibly speaking, (g) whether speech crosses a cut, and (h) the moment after which no further speech is authorized. Include intentional silent shots. Every spoken word must be traceable to an authorized event. Never silently rewrite, shorten, redistribute, or add dialogue.
 
-Record:
-- Exact scripted words, copied verbatim.
-- Speaking character and `<Subject N>` designation.
-- Global `(Sx)` speaker ID, assigned by first vocal occurrence.
-- Shot in which each line is spoken.
-- Available speaking interval.
-- Whether the dialogue continues across a cut.
+## 2. Dialogue-first shot construction
 
-Every spoken word in the final video must be traceable to an authorized dialogue event.
+In each speaking shot of `detailed_description`, establish the approved full-screen composition and clearly visible speaking subject, then identify `<Subject N> (Sx)`, give one concise vocal direction, insert the exact line once in `<d>[English] ...</d>`, and describe synchronized lips plus the post-line visual action. Keep the dialogue near the beginning of the shot description rather than burying it beneath long secondary directions. Preserve detailed cinematography, lighting, blocking, and acting, but separate these instructions from the dialogue event. Do not duplicate the full scripted line in `summary`, `overall_soundscape`, global restrictions, or other shots.
 
-### 2. Dialogue-first shot construction
+## 3. Spoken-language enforcement
 
-Within each speaking shot in `detailed_description`:
+Require natural, intelligible English for English dialogue. Preserve every word in script order, without paraphrase, substitutions, invented syllables, additional phrases, or non-English improvisation. Never invent phonetic spellings or accents. Each `<d>` tag is an exact authorized speech event, not a suggestion to improvise around the line.
 
-1. Establish the camera composition and visible speaking subject.
-2. Identify the speaker using `<Subject N> (Sx)`.
-3. Specify the intended vocal delivery concisely.
-4. Place the exact scripted words inside `<d>[English] ...</d>`.
-5. Describe the necessary synchronized facial performance and subsequent action.
+## 4. Speaker ownership and visual proof
 
-Do not bury the dialogue beneath long passages of secondary visual instructions.
+Use the same `<Subject N>` consistently and assign `(S1)`, `(S2)`, etc. by first vocal occurrence in the target video, not by subject numbering. At each vocal event, explicitly associate the speaker ID with the visible speaking character. Prefer a clear view of that character's face and mouth during the line when the approved storyboard permits it. Other visible characters are listeners and do not articulate speech. Do not assume that a character shown in the previous or next shot owns the current line. A dialogue shot may contain multiple characters if the speaking character is unambiguous. Do not change the approved shot or exclude an authorized character without approval.
 
-### 3. Spoken-language enforcement
+**Production-specific restriction:** For this user's AI filmmaking workflow, no voiceover or off-screen dialogue. Every authorized line must be delivered by its actual speaker visibly speaking at that moment. If a script or existing shot plan requires off-screen speech, flag the conflict for user decision rather than silently changing it. This production restriction is stricter than the generic telephone/off-screen allowance in v1.0.
 
-For English dialogue, explicitly require natural, intelligible spoken English.
+## 5. Dialogue crossing shot boundaries
 
-The character must articulate the exact scripted words in the specified order, without paraphrasing, substituted words, invented syllables, additional phrases, or unintelligible vocalizations.
+Prefer one complete line per speaking shot when the approved storyboard and natural pacing already support it; this is a reliability preference, not permission to change the edit. If a scripted line must cross a cut, preserve one continuous vocal event, stable speaker ID, voice timbre, pace, and emotion; use official MiniMax continuity notation, including `<scenetrans>` where applicable and verified. Do not split or relocate words without approval. If a cut makes visible-speaker ownership impossible under the no-off-screen-dialogue rule, flag it before conversion.
 
-Do not invent phonetic spellings, change the script's language, or introduce an accent not specified by the source.
+## 6. Dialogue timing and chronological lock
 
-### 4. Speaker ownership
+Check that every line fits naturally in its assigned shot, including pronunciation and intended dramatic pauses. Record a chronological speaking schedule before writing. Where helpful, specify the line's approximate completion time **before** the next hard cut; avoid excessive subsecond micromanagement of ordinary speech. Each complete event finishes before the next event starts unless the screenplay expressly authorizes overlap or cross-cut continuity. Never permit the model to infer additional dialogue from unfilled shot time. If a line cannot fit, ask for user-approved timing or segmentation changes.
 
-Every speaking event must pair the visible subject with the correct speaker ID.
+## 7. Silent-shot discipline and final dialogue cutoff
 
-Use `<Subject N> (Sx)` consistently at the actual vocal event. Never assume subject numbers and speaker numbers are identical.
+For a silent shot, specify a concrete nonverbal performance: gaze, brow, posture, hands, and quiet reaction, grounded in the storyboard. Explicitly state that the characters do not speak. Define environmental-only audio for that shot; do not describe an anticipated verbal reply, an unspoken question about to be voiced, or an invitation to continue talking.
 
-Do not allow a character to deliver another character's dialogue.
+**Final-line rule (new):** Identify the last authorized dialogue event. Specify its natural completion point and state that from that moment to the end of the video, the soundtrack contains only authorized environmental sounds. When a silent reaction follows the last line, make that shot explicitly nonverbal. Avoid placing new speech-like cues after the final `<d>` tag. Do not impose a completion time that would make the line unnaturally rushed.
 
-In telephone conversations, each character speaks only when the approved shot plan assigns dialogue to that character. Preserve any explicitly scripted off-screen speech, but do not invent remote telephone voices.
+## 8. Prompt clarity, density, and storyboard fidelity
 
-### 5. Dialogue crossing shot boundaries
+Keep all six required MiniMax sections and preserve the approved visual plan. Use one clear chronological dialogue sequence in `detailed_description`; put each complete scripted line in one dialogue tag only. Avoid repeating exact dialogue in headings, summaries, soundscape, or constraints. Avoid long lists of vocal prohibitions after each line; use one concise global restriction and one specific silent-shot statement where needed. The storyboard remains a planning reference, not a visible grid. Reproduce each panel as a separate full-screen cinematic shot. Camera direction and eyeline are different: describe the camera's viewing direction, the background behind the speaker, and who must remain outside the frame where necessary. This framing control addresses a separate visual failure observed during Scene 2; it is not a dialogue syntax requirement.
 
-When a single sentence continues across a cut, treat it as one continuous vocal performance.
+## 9. Audio-section separation
 
-Maintain the same speaker ID, vocal timbre, language, pace, and emotional delivery.
+Place exact scripted words only inside `<d>` tags in `detailed_description`. `overall_soundscape` describes authorized room tone, environmental effects, and, if useful, the number/order of speech events **without repeating their words**. If the final dialogue has ended, state the ambience-only interval here once. `non_diegetic_music` remains none unless the user expressly authorizes otherwise. Do not add improvised human utterances as ambience.
 
-Use the official MiniMax dialogue-continuity notation, including `<scenetrans>` where appropriate.
+## 10. Mandatory dialogue-reliability audit
 
-Do not turn a sentence fragment into a separate, unrelated speech event.
+Before delivery verify:
 
-Do not alter the approved shot boundary or redistribute words without authorization.
+- The dialogue manifest matches the script word-for-word and in order.
+- Every speaking event has one correct stable `<Subject N>` and global `(Sx)` ID.
+- The correct speaking face is visibly present during each line, consistent with the storyboard and production's no-off-screen-speech rule.
+- Every English line uses valid `<d>[English] ...</d>` notation and appears exactly once.
+- Each line has a feasible interval and ends before the next event unless approved continuity notation applies.
+- The final spoken event has an explicit, natural termination point; subsequent shots are silent and ambience-only where required.
+- Non-speaking characters have no speech cues or lip articulation instructions.
+- No duplicate dialogue text appears in `summary`, `overall_soundscape`, or repeated global instructions.
+- All approved shot framing, camera positions, cuts, durations, character identities, acting, and visual continuity remain intact.
+- All six MiniMax sections are present and reference assignments follow the actual upload order (`<Picture 0>` storyboard, subsequent pictures per explicit asset map).
 
-### 6. Dialogue timing feasibility
+**Release rule:** Pass both the visual-continuity audit and this dialogue-reliability audit before delivering a complete standalone prompt.
 
-Before finalizing the prompt, check whether the scripted words can be spoken naturally within the allocated shot duration.
+## 11. Failure diagnosis and repair ladder (new)
 
-Allow adequate time for intelligible pronunciation, necessary breaths, and scripted emotional pauses.
+**A. Wrong speaker / duplicated line:** Verify the actual speaker-to-subject mapping, global ID order, visible mouth, and shot boundary. Repair only affected events; preserve already successful shots.
 
-Avoid unnecessary subsecond instructions that fragment ordinary conversational speech.
+**B. Dialogue out of order:** Simplify to a single chronological dialogue sequence, one `<d>` tag per authorized event, with one visible speaker per speaking shot when already compatible with the storyboard. Remove redundant vocal instructions. Do not change shots or script without approval.
 
-If a line cannot reasonably fit, flag the conflict for user approval. Never silently shorten, accelerate, paraphrase, or relocate the dialogue.
+**C. Improvised or unintelligible dialogue between lines:** Keep visual detail but shorten speech directions, eliminate repeated dialogue text, and explicitly define each event's completion before the next shot.
 
-### 7. Silent-shot discipline
+**D. Garbage speech after the last line:** Keep the successful dialogue events unchanged. Give the last line a feasible completion point, then define an ambience-only remainder and a clearly nonverbal final reaction. This was the final targeted experiment used in Scene 2; success is reported at the completed-video level, not as a controlled proof of which individual instruction caused the improvement.
 
-For shots without authorized dialogue, explicitly state that the visible characters remain silent.
+**E. Incorrect framing / unwanted background character:** Describe the storyboard's camera geometry, screen position, and background exclusions precisely. Do not assume an eyeline establishes camera placement. Preserve shots already rendering correctly.
 
-Preserve intended listening, facial reactions, and environmental ambience.
+**F. Storyboard rendered as an animated grid:** Retain mandatory storyboard-as-planning-only wording from Stylistic Preferences. If it persists, request user approval to test clean borderless per-shot references where the workflow supports them.
 
-Do not generate filler words, muttering, invented telephone speech, or unscripted vocal reactions.
+**G. Persistent failure after targeted prompt repair:** Stop near-identical prompt retries. Offer user-approved separate speaking-shot generations and editorial assembly, or a controlled external dialogue-audio workflow. Do not claim either workaround guarantees success.
 
-Keep silence instructions concise rather than repeating extensive negative lists throughout the shot.
+## 12. Evidence and change control (new)
 
-### 8. Prompt clarity and instruction density
+Track the clip number, version, failure category, changed prompt sections, and observed output. Preserve successful lines, shots, and reference assignments when repairing a different failure. Classify findings as (1) directly observed improvements, (2) plausible but unproven mechanisms, or (3) untested fallback options. In Scene 2, the simplified chronological structure coincided with correct speaker order and dialogue sequencing; a later final-line cutoff repair was followed by the user's report that all clips generated without problems. These observations support testing the new rules but do not isolate causal effects or guarantee future success.
 
-Preserve the complete approved visual plan, cinematic detail, character identity, and environmental continuity.
-
-However, remove redundant dialogue-related instructions that repeat the same prohibition many times.
-
-Keep detailed visual directions and exact dialogue instructions clearly distinguishable.
-
-Use one concise global dialogue restriction, supplemented by specific speaker assignments within the relevant shots.
-
-### 9. Audio-section separation
-
-Place exact spoken dialogue only inside `detailed_description`, using official `<d>` notation.
-
-Use `overall_soundscape` for the authorized environmental ambience and sound effects. Do not duplicate complete dialogue lines there.
-
-Retain the existing prohibition against non-diegetic music.
-
-### 10. Mandatory dialogue-reliability audit
-
-Before releasing each prompt, verify:
-
-- Every scripted word is preserved exactly.
-- Every dialogue event has the correct speaker ID.
-- The speaking character is correct for the shot.
-- Every English line uses valid `<d>[English] ...</d>` syntax.
-- Speech crossing a cut uses appropriate official continuity notation.
-- The spoken line fits the available time naturally.
-- Silent shots contain no unintended dialogue events.
-- No contradictory vocal instructions appear elsewhere.
-- No additional dialogue has been invented.
-- No approved shot, camera composition, duration, or dramatic action has been changed.
-
-**Release rule:** A prompt must pass both the existing visual-continuity audit and this dialogue-reliability audit before delivery.
-
-**Important limitation:** These rules reduce avoidable prompting ambiguity but cannot guarantee deterministic speech synthesis. If gibberish persists despite a compliant prompt, report the failure and consider a user-approved change to dialogue segmentation or an external dialogue-audio workflow.
+**Compatibility note:** Official MiniMax syntax and the full-reference six-section format remain authoritative. This document is a production-specific supplementary protocol, not an official MiniMax specification.
