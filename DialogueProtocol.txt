@@ -1,8 +1,8 @@
-# Dialogue Reliability Protocol — Supplementary Rules v1.3
+# Dialogue Reliability Protocol — Supplementary Rules v1.4
 
 **Purpose:** Govern direct conversion from an approved storyboard image and its original storyboard-generation prompt into a MiniMax H3 full-reference prompt, while reducing improvised, unintelligible, non-English, incorrectly attributed, repeated, out-of-order, or mistimed dialogue in MiniMax H3 full-reference video generation.
 
-**Status:** Revised from v1.2 to adopt direct storyboard-to-MiniMax conversion and controlled dialogue/timing optimization. Supplements official MiniMax syntax and the minimally updated Stylistic Preferences v1.1. The storyboard remains authoritative for visual coverage; this protocol controls the permitted dialogue and timing decisions. Prompting controls are not guarantees of deterministic generation.
+**Status:** Revised from v1.3 with mandatory first-frame fidelity, inter-event silence control, and source-verification safeguards. Retains direct storyboard-to-MiniMax conversion and controlled dialogue/timing optimization. Supplements official MiniMax syntax and the minimally updated Stylistic Preferences v1.1. The storyboard remains authoritative for visual coverage; this protocol controls the permitted dialogue and timing decisions. Prompting controls are not guarantees of deterministic generation.
 
 ## 1. Exact-dialogue priority and private manifest
 
@@ -142,7 +142,7 @@ A single sentence should normally stay within one shot. A reaction close-up of B
 
 **Evidence standard:** Record the original failure, changed schedule, prompt version, actual regeneration result, and whether success was user-confirmed. Treat the Scene 5 repairs above as *tested hypotheses only where an outcome was reported*; do not mark them successful without confirmation. Preserve existing Scene 3 success records in Section 12.
 
-## 17. Final direct-conversion release checklist (v1.3)
+## 17. Final direct-conversion release checklist (v1.4)
 
 - [ ] Completed storyboard image and original storyboard-generation prompt both examined; exact script dialogue available.
 - [ ] Reference map is explicit, with `<Picture 0>` storyboard and no assumed subject/picture-number correspondence.
@@ -154,5 +154,72 @@ A single sentence should normally stay within one shot. A reaction close-up of B
 - [ ] One `<d>` tag per authorized vocal event; stable `<Subject N>` and `(Sx)` mapping; no redundant exact dialogue elsewhere.
 - [ ] All six official MiniMax sections present, with detailed shot-by-shot visual descriptions, no music, and no added speech.
 - [ ] Operator header and optimized shot/dialogue schedule supplied; any unresolvable conflict is flagged instead of guessed.
+- [ ] At 00:00.000, the opening composition is already the actual Panel 1 cinematic view; no pre-roll, substitute frame, or introductory image.
+- [ ] Every gap between two authorized vocal events is assigned an explicit silent/nonverbal interval with environmental-only audio and resting mouths.
+- [ ] Dialogue shot/panel placement and total duration are grounded in authoritative inputs, never guessed from an image alone.
+- [ ] The first spoken sound is the first word of the first authorized line; no preliminary vocal filler.
+- [ ] All observed repair outcomes are labeled confirmed, unconfirmed, or untested; no claimed guarantee of compliance.
 
 **Version-control note:** Stylistic Preferences v1.1 is intended to remain stable. Future production experiments and repair findings belong in this Dialogue Protocol unless an actual conflict with the fixed stylistic document requires a narrowly scoped amendment.
+
+
+## 18. First-frame fidelity and zero-second opening lock (v1.4 — mandatory)
+
+**Observed failure — Scene 6 Videos 08 and 12:** The generated video briefly displayed an unrelated image or composition before switching to storyboard Panel 1. The user reported this output defect; no controlled successful regeneration has yet been established from these latest revisions.
+
+**Required preflight:** Identify the actual top-left Panel 1 image, not just the panel's narrative role. Record its shot scale, camera position, visible face(s), posture, eyeline, foreground/background geometry, and practical lighting. Verify that the image is genuinely intended as the first shot; if the supplied storyboard order or original prompt contradicts that, stop for clarification. The storyboard is a composition reference, not a literal grid to animate.
+
+**Required opening instruction in `detailed_description`:** State, near the beginning of the description and again concisely within `[Shot 1]`, that at **00:00.000 the first visible generated frame is already the full-screen live-action reconstruction of Panel 1**, with its approved camera geometry and subject placement. The first shot begins in the established composition, not by moving or cutting into it. No pre-roll, unrelated image, preliminary wide shot, transitional image, fade from a different composition, or substitute opening angle. Do not claim the source storyboard page itself must be displayed.
+
+**Opening-shot performance:** If Panel 1 depicts an action already underway or a person already facing camera, begin in that approved visual state. Do not invent a preparatory movement to reach it. Where a scripted action must unfold within Shot 1, animate only the action shown or authorized by the source. A silent opening shot must begin with environmental-only audio; a speaking opening shot begins its exact authorized speech only once the correct face is visible, without filler beforehand.
+
+**Hard-cut boundary:** Schedule the first hard cut at the approved or safely optimized time, preserving every later panel. A delayed opening image must not be repaired by adding an extra shot or stealing time from a later panel.
+
+**Diagnostic limitation:** Prompt text can request frame-zero fidelity but cannot force a generative model to obey. If a transient wrong first frame persists after one or two focused revisions, stop near-identical retries and propose a user-approved separate Panel 1 generation or editorial trim/replacement, with total-duration and continuity consequences stated. Do not silently trim the clip or change the approved shot plan.
+
+## 19. Inter-event silence lock and no-filler dialogue windows (v1.4 — mandatory)
+
+**Observed failure — Scene 6 Video 08:** Improvised or unintelligible vocal material preceded Dr. Mimi Vale's first authorized line. **Observed failure — Scene 6 Video 12:** Improvised or unintelligible vocal material appeared between her two authorized lines. These are reported generation defects, not script changes. No isolated causal test of the proposed safeguards has been performed.
+
+**Event-boundary manifest:** For every spoken event record: (a) exact first word, (b) correct speaker and visible mouth, (c) earliest feasible onset after composition is established, (d) natural completion and vocal release, (e) the next authorized vocal event, and (f) the audio status of every interval between events. Distinguish a pause **inside** a single scripted sentence from the silent interval **between** two distinct dialogue events. Never create an extra `<d>` tag for a pause.
+
+**First-vocal-sound rule:** If the first authorized dialogue begins later than 00:00.000, explicitly assign the opening interval to environmental sound only. The first human vocal sound, whenever it occurs, must be the first word of the first authorized `<d>` event. Do not cue a preliminary inhale as an audible vocal performance, throat-clear, mutter, hesitant syllable, or exclamation unless specifically scripted. Natural nonvocal breathing may remain subtle when compatible with the scene.
+
+**Between-lines rule:** After each authorized line, describe a natural vocal release and resting or appropriately neutral mouth; if the next line is later, explicitly state that the intervening time contains only the established environmental ambience. In a silent reaction shot, specify the approved nonverbal gaze, brow, and posture, and that no character speaks or mouths words. If two lines by the same character are separated by another character's silent reaction, do not let the first speaker's voice carry over that cut. The next vocal event begins only when the correct speaking face is established in its assigned shot.
+
+**No accidental dialogue invitation:** Avoid prose such as “she starts to explain,” “he responds under his breath,” “she searches for words,” “a tense verbal exchange,” or “he is about to answer” in silent intervals. Such phrases may imply unauthorized speech. Describe the visible emotion and physical behavior instead. Do not add extra `<d>` tags for incidental sounds or repeat scripted words outside their single authorized tags.
+
+**Concision rule:** Use one short global instruction that only tagged lines are spoken, plus a concrete silence statement in each genuinely silent shot and one ambience-only statement for an important gap. Do not flood every shot with escalating lists of negative commands. This is a proposed reliability heuristic, not an official MiniMax guarantee.
+
+## 20. Source-verification and no-invented-schedule gate (v1.4 — mandatory)
+
+**Observed process risk — Scene 6 Video 12 repair:** A storyboard image and two quoted lines do not independently establish the total duration, exact speech-to-panel assignments, or original vocal performance. A plausible reconstruction must not be presented as an approved conversion.
+
+Before conversion, obtain or recover the **original storyboard-generation prompt** and the approved **total duration**, in addition to the actual storyboard and asset map. If either is unavailable, request the missing source or explicitly offer a *provisional draft for confirmation*, clearly labeled as non-release-ready. Do not select a default 10-, 12-, or 15-second duration or assume that a speaking-looking mouth proves which line belongs to that panel. If the user explicitly authorizes a new schedule or dialogue placement, record that as a user-approved change.
+
+A prompt passes the release gate only when exact words, speaker, panel assignment (or authorized reassignment under Section 14), total duration, and asset mapping are grounded. Preserve the user's specified image order: `<Picture 0>` storyboard, followed by the explicitly assigned turnaround/reference sheets. Do not assume subject IDs equal picture indices.
+
+When the original prompt is unavailable but the user wants a targeted fix, separate **confirmed** facts (visible panels, explicitly supplied dialogue, observed failure) from **proposed** timing or placement. Ask one focused clarification for any release-blocking missing information. Do not silently change visual coverage to solve an audio defect.
+
+## 21. Scene 6 failure-specific repair records (v1.4)
+
+**Video 08 — incorrect opening image plus unsolicited speech before first authorized line:** User reported a transient unrelated opening frame and garbage speech before Dr. Mimi Vale's first scripted line. Proposed repair: anchor Panel 1 at 00:00.000, explicitly make the initial silent shot ambience-only, and allow the first vocal event only in its authorized speaker-visible shot. Outcome of regeneration: **not confirmed**.
+
+**Video 12 — incorrect opening image plus unsolicited speech between Vale's two lines:** User reported a transient unrelated opening frame and garbage speech between “He did.” and “He caused the blackout.” The supplied storyboard shows four compositions in order: Vale close-up, Alex close-up, Vale tighter close-up, Ben extreme close-up. Proposed repair: first-frame Panel 1 lock; complete the first Vale vocal event before the silent Alex reaction; use environmental-only audio during that reaction; begin the second Vale vocal event only once her third-panel speaking face is established; end with Ben's silent reaction. These quoted lines are evidence records, **not** prompt-ready `<d>` tags and must not be duplicated into the generated prompt outside their assigned events. The repair conversation proposed a 10-second schedule without having the original duration source; Section 20 now prohibits treating such an estimate as approved. Outcome of regeneration: **not confirmed**.
+
+**Failure taxonomy additions:** I. transient wrong opening frame / delayed Panel 1; J. pre-first-line improvised speech; K. improvised speech between authorized lines; L. missing original duration or dialogue-to-panel source. Diagnose each independently. Repair the relevant opening, dialogue window, or input-validation instructions without rewriting otherwise successful coverage.
+
+**Evidence limitation:** These interventions are plausible, targeted prompting measures based on reported failures. They are not experimentally validated fixes, and MiniMax may still generate errors. Record future user-confirmed regeneration results before upgrading a proposed measure to an observed success.
+
+## 22. Final v1.4 conversion sequence (mandatory operational order)
+
+1. Read the official MiniMax guidelines, positive examples, current Stylistic Preferences, and this protocol. Preserve official syntax and the six-section output format.
+2. Verify the storyboard image, original storyboard-generation prompt, exact dialogue, approved total duration, and explicit upload map. Stop or label provisional when a release-critical source is missing.
+3. Inspect each actual storyboard panel; build the shot inventory, including the exact opening composition and all speaking-mouth visibility constraints.
+4. Construct the chronological dialogue manifest and assign global speaker IDs by first vocal occurrence. Mark all opening, inter-event, reaction, and post-final-line silent intervals.
+5. Optimize existing shot durations and placement only within Sections 13–16. Preserve total duration, panel order, compositions, and all exact lines; escalate any impossible speaker-visible assignment.
+6. Draft all six MiniMax sections. In `detailed_description`, put the frame-zero Panel 1 instruction near the start; then present one chronological shot sequence with a single `<d>` tag for each authorized event, natural line completion, and concise silence instructions for the gaps.
+7. Audit first frame, hard cuts, speaker identity, exact dialogue, nonverbal intervals, final-line cutoff, visual fidelity, reference mapping, and audio-section separation.
+8. Deliver the operator header, optimized shot schedule, and one complete copy/paste-ready prompt only when the release gates pass. If the user reports failure, document the precise symptom and make the smallest targeted change before trying again.
+
+**Version 1.4 scope:** This revision strengthens opening-frame and dialogue-window reliability while preserving v1.3's source authority, camera/storyboard fidelity, timing discretion, speaker-visibility rules, six-section syntax, and prior evidence records. It does not amend Stylistic Preferences v1.1 or claim any model behavior is deterministic.
