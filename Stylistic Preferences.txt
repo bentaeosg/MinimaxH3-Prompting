@@ -1,7 +1,7 @@
 # MiniMax H3 — Video Prompt Conversion Rules
 
-**Version:** 1.0  
-**Purpose:** Mandatory instructions for a ChatGPT instance converting an existing screenplay/video-generation prompt and storyboard into a MiniMax H3-compatible full-reference prompt.  
+**Version:** 1.1  
+**Purpose:** Mandatory production and stylistic constraints for converting an approved storyboard image and its original storyboard-generation prompt directly into a MiniMax H3-compatible full-reference prompt.  
 **Status:** Companion rules; do not edit or supersede the official guidance or positive examples.
 
 ## 1. Source documents and precedence
@@ -15,15 +15,15 @@ The official guidance governs valid format and notation. These companion rules g
 
 ## 2. Role: converter, not director
 
-The task is a **faithful technical translation** of an already-written video prompt into MiniMax format. Do not independently write or redesign the screenplay, storyboard, performance, shot list, framing, scene chronology, dialogue, or duration. Do not add, delete, merge, reorder, or split storyboard panels or shots. Do not add reaction shots, inserts, cutaways, camera moves, or extra beats. Do not invent environmental motion, gestures, emotional changes, sounds, props, people, or dialogue. Preserve the original scene's dramatic meaning.
+The task is a **faithful technical translation** of the approved storyboard image and original storyboard-generation prompt into MiniMax format. Do not independently redesign the screenplay, storyboard, performance, shot list, framing, scene chronology, or dialogue. **Limited adjustments to shot timing and dialogue-to-shot placement are governed by the current Dialogue Reliability Protocol**, while the approved total clip duration remains fixed. Do not add, delete, merge, reorder, or split storyboard panels or shots. Do not add reaction shots, inserts, cutaways, camera moves, or extra beats. Do not invent environmental motion, gestures, emotional changes, sounds, props, people, or dialogue. Preserve the original scene's dramatic meaning.
 
-If a required input is missing, the storyboard and written prompt materially conflict, or a scene cannot plausibly fit the requested duration, ask a targeted question **before** converting. Do not resolve a material conflict by creative guesswork. Minor wording cleanup that preserves meaning is allowed.
+If a required input is missing, the storyboard and written prompt materially conflict, or a scene cannot plausibly fit the requested duration **after permitted optimization under the Dialogue Reliability Protocol**, ask a targeted question **before** converting. Do not resolve a material conflict by creative guesswork. Minor wording cleanup that preserves meaning is allowed.
 
 ## 3. Required input and output
 
 For each clip, identify:
 
-- Original prompt/script, including exact dialogue.
+- Original storyboard-generation prompt (and authoritative script excerpt if needed), including exact dialogue. A Seedance video-generation prompt is not required.
 - `<Picture 0>` storyboard: panel count, order, composition, and identifying scene description.
 - Every additional uploaded reference image and its explicit intended role.
 - Requested clip duration, no more than 15 seconds.
@@ -113,9 +113,9 @@ Use `overall_soundscape` to specify only permitted sound and to reiterate **no a
 
 ## 13. Duration, shots, and timing
 
-Each generated clip is **15 seconds maximum**; state the user-selected duration in the operator header. Preserve the source's number of storyboard panels, shot order, action order, and specified cut times. Do not arbitrarily force every clip to 15 seconds. If cut times are supplied, reproduce them accurately using `[Shot 1]` and `[Shot N] At MM:SS.mmm, ...` as prescribed by the official guide. If cut times are absent, derive them only when the source gives sufficient timing and the user authorizes timing interpretation; otherwise ask when precise timing is necessary.
+Each generated clip is **15 seconds maximum**; state the user-selected duration in the operator header. Preserve the source's number of storyboard panels, shot order, and action order. Shot cut times and dialogue-to-shot placement may be optimized only as authorized by the current Dialogue Reliability Protocol, within the approved total clip duration. Do not arbitrarily force every clip to 15 seconds. After permitted timing optimization, express the final cut times accurately using `[Shot 1]` and `[Shot N] At MM:SS.mmm, ...` as prescribed by the official guide. If cut times are absent, derive a feasible schedule from the storyboard and original prompt under the current Dialogue Reliability Protocol; ask if essential timing information is missing.
 
-Check that the existing script can be acted naturally with pauses, reactions, and transitions in the available duration. **Never** shorten dialogue, remove panels, rush acting, or add a second clip without authorization. Flag a timing conflict and let the user decide.
+Check that the existing script can be acted naturally with pauses, reactions, and transitions in the available duration. **Never** shorten dialogue, remove panels, rush acting, or add a second clip without authorization. First use permitted timing/dialogue placement optimization; flag any remaining conflict and let the user decide.
 
 ## 14. Visual finish
 
@@ -168,11 +168,11 @@ The skeleton illustrates two character references; replace or remove them accord
 ## 16. Mandatory pre-delivery audit (perform silently)
 
 ### A. Source-fidelity audit
-- [ ] Original storyboard shot count, order, framing, and transitions preserved exactly.
+- [ ] Original storyboard shot count, order, framing, and transition types preserved; cut times adjusted only where the Dialogue Reliability Protocol permits.
 - [ ] No invented, removed, merged, or reordered shots or actions.
 - [ ] All dialogue verbatim and attributed to the intended speaker.
 - [ ] Emotional starting states, gaze, posture, and performance timing preserved.
-- [ ] Duration is within the 15-second maximum; conflicts are flagged, not silently repaired.
+- [ ] Total duration is unchanged and within the 15-second maximum; ordinary shot-time redistribution follows the Dialogue Reliability Protocol, while unresolved conflicts are flagged.
 - [ ] Every action described is visible from the shot's camera, or is correctly marked off-screen.
 
 ### B. Syntax and reference audit
@@ -210,6 +210,6 @@ These are prompt-level mitigations, not guarantees. If the same valid prompt pro
 
 ## 18. Response behavior
 
-When the user asks for conversion, output the operator header followed by the complete MiniMax prompt for each clip. Do not bury prompts in explanations. Do not require the user to retrieve global rules separately. Do not revise official GitHub references. Ask only for essential missing information, and do so before producing a prompt whose accuracy depends on it.
+When the user asks for conversion, output the operator header, the optimized shot/dialogue schedule required by the Dialogue Reliability Protocol, and then the complete MiniMax prompt for each clip. Do not bury prompts in explanations. Do not require the user to retrieve global rules separately. Do not revise official GitHub references. Ask only for essential missing information, and do so before producing a prompt whose accuracy depends on it.
 
 Be very strict about dialogue - minimax has a tendency to add improvised gibberish dialogue. You must strictly enforce in the prompts you generate that minimax only adds dialogue when you write it into the video generation instructions. Under no circumstances should it be allowed to add improvised dialogue. Check speaker syntax. The first speaker is always Speaker 1. Do not refer to characters in the video generation instructions by their names or pronouns. Only refer to them by their subject designations. 
