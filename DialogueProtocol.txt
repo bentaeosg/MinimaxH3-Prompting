@@ -1,8 +1,8 @@
-# Dialogue Reliability Protocol — v1.5 (Production Reliability Edition)
+# Dialogue Reliability Protocol — v1.6 (Text-Only Conversion Edition)
 
-**Purpose:** Mandatory supplementary production protocol for converting an approved storyboard and its original storyboard-generation prompt directly into a MiniMax H3 full-reference video prompt, with particular attention to exact dialogue, speaker identity, clean speech boundaries, audio-source isolation, full-screen storyboard reconstruction, and cinematic detail.
+**Purpose:** Mandatory supplementary production protocol for converting the original approved storyboard-generation prompt directly into a MiniMax H3 full-reference video prompt, with particular attention to exact dialogue, speaker identity, clean speech boundaries, audio-source isolation, full-screen storyboard reconstruction, and cinematic detail.
 
-**Status:** Supersedes Dialogue Reliability Protocol v1.4. Works alongside Official Minimax Prompting Guidelines.txt, Minimax Positive Prompts.txt, and Stylistic Preferences.txt v1.1. It does not supersede official syntax or authorize redesign of an approved storyboard. The combined repair packages tested in November 2026 were reported successful by the user; no individual mechanism was isolated experimentally. These are reliability practices, not deterministic guarantees.
+**Status:** Supersedes Dialogue Reliability Protocol v1.5. Works alongside Official Minimax Prompting Guidelines.txt, Minimax Positive Prompts.txt, and Stylistic Preferences.txt v1.1. It does not supersede official syntax or authorize redesign of the shot plan specified by the storyboard-generation prompt. The combined repair packages tested in November 2026 were reported successful by the user; no individual mechanism was isolated experimentally. These are reliability practices, not deterministic guarantees.
 
 ## 1. Mandatory references, order, and precedence
 
@@ -12,17 +12,17 @@ Before each relevant conversion, actually read the complete contents, in order, 
 3. Stylistic Preferences.txt
 4. DialogueProtocol.txt (this file)
 
-If a file cannot be read, identify it and do not claim compliance with its unverified contents. Official guidance controls valid syntax; stylistic preferences control production-wide constraints; this protocol controls dialogue and permitted shot-time optimization. The original screenplay/storyboard-generation prompt governs exact words, speaker identity, emotional intent, and story actions; the approved storyboard governs visual shot coverage; assigned character references govern facial identity and wardrobe. Report irreconcilable conflicts rather than silently choosing.
+If a file cannot be read, identify it and do not claim compliance with its unverified contents. Official guidance controls valid syntax; stylistic preferences control production-wide constraints; this protocol controls dialogue and permitted shot-time optimization. The original approved storyboard-generation prompt governs shot coverage, framing, camera geometry, action, and dialogue as written; an authoritative screenplay excerpt, if provided, governs exact scripted words and speaker identity when the prompt is ambiguous. Assigned character references govern facial identity and wardrobe. No storyboard image is supplied to ChatGPT or required for conversion. Report irreconcilable conflicts rather than silently choosing.
 
 ## 2. Inputs and release gate
 
-Required: (a) actual approved storyboard image, (b) original storyboard-generation prompt and authoritative screenplay excerpt where needed, (c) approved total duration (maximum 15 seconds), (d) explicit reference-upload map, and (e) any authorized exceptions, such as actual remote speech or unusual audio. A Seedance prompt is NOT a prerequisite. Inspect the actual panels, not merely the written storyboard description. If essential information is missing, ask one targeted question or label the output PROVISIONAL and not release-ready. Never invent dialogue, duration, or a speaker-to-panel assignment from an image alone.
+Required: (a) original approved storyboard-generation prompt, with authoritative screenplay excerpt only where needed, (b) approved total duration (maximum 15 seconds), (c) explicit reference-upload map, and (d) any authorized exceptions, such as actual remote speech or unusual audio. A storyboard image and a Seedance prompt are NOT prerequisites. ChatGPT must derive the shot inventory solely from the supplied written storyboard-generation prompt, not request, inspect, or claim to have verified a generated storyboard image. If essential written information is missing, ask one targeted question or label the output PROVISIONAL and not release-ready. Never invent dialogue, duration, or speaker-to-shot assignment.
 
-**Fixed upload order:** `<Picture 0>` storyboard; `<Picture 1>` first explicitly assigned character/asset; `<Picture 2>` second explicitly assigned character/asset; subsequent pictures as explicitly mapped. Never assume `<Subject N>` equals `<Picture N>`. Subject numbering begins at 1. The operator header must identify the clip, selected duration, and every reference in upload order.
+**MiniMax reference-upload order (not ChatGPT inputs):** `<Picture 0>` storyboard image uploaded directly by the user to MiniMax; `<Picture 1>` first explicitly assigned character/asset; `<Picture 2>` second explicitly assigned character/asset; subsequent pictures as explicitly mapped. ChatGPT receives only the written storyboard-generation prompt and the text describing the reference assignments; it must not require the image files. Never assume `<Subject N>` equals `<Picture N>`. Subject numbering begins at 1. The operator header must identify the clip, selected duration, and every reference in upload order.
 
 ## 3. Source authority and allowable optimization
 
-Preserve the approved storyboard's shot count, order, framing, camera geometry, physical blocking, visible subjects, essential action, environment, lighting, and dramatic progression. Preserve exact script dialogue and speaker ownership. Do not invent camera angles, shots, props, gestures, characters, sound effects, or dialogue.
+Preserve the written storyboard-generation prompt's shot count, order, framing, camera geometry, physical blocking, visible subjects, essential action, environment, lighting, and dramatic progression. Preserve exact script dialogue and speaker ownership. Do not invent camera angles, shots, props, gestures, characters, sound effects, or dialogue.
 
 Without requesting approval for each ordinary adjustment, the converter MAY redistribute durations among existing shots while preserving total duration, move an **intact** scripted dialogue event to a different existing shot where the same correct speaker's articulating mouth is clearly visible, shorten nonessential preparatory action, or make a shot a silent reaction after its complete dialogue has been safely reassigned. Do not move individual words, change line order, reassign speakers, remove essential action, or turn a back-facing listener into a speaking face. If a valid schedule cannot be made, block release and ask for an approved storyboard change, duration change, or separate generation.
 
@@ -32,7 +32,7 @@ Without requesting approval for each ordinary adjustment, the converter MAY redi
 
 Before drafting, construct two internal working tables:
 
-**Shot inventory:** panel index, frame geometry, camera angle and direction, foreground/background, visible people, mouth visibility, initial visual state, essential action, permitted camera movement, lighting sources, location, intended emotion, and available duration.
+**Shot inventory (from text only):** written panel/shot index, specified frame geometry, camera angle and direction, foreground/background, visible people, described mouth visibility, initial visual state, essential action, permitted camera movement, lighting sources, location, intended emotion, and available duration. Mark unspecified attributes as unspecified; do not infer them from an unseen image.
 
 **Dialogue manifest:** one row per authorized vocal event: exact verbatim text and punctuation; speaking character; stable `<Subject N>`; global `(Sx)` assigned by first audible occurrence; shot/panel; estimated onset and natural completion; visible mouth; performance direction; previous and next event; intervening audio state; and whether any communication device or video display is present. Include explicit `SILENT` entries for all shots without speech and for meaningful pre-line, between-line, and post-line intervals.
 
@@ -45,7 +45,7 @@ Produce exactly these six MiniMax sections in order:
 
 Use official reference-label, retention-marker, shot, dialogue, and speaker syntax. Use `[reference generation]` when the storyboard is a planning reference rather than a literal first-frame image. In `detailed_description`, use `[Shot 1]` for the opening and `[Shot N] At MM:SS.mmm, ...` for subsequent hard cuts. The user-selected total duration must be explicit in the operator header and summary; the last shot ends at that duration.
 
-**High-detail standard:** A prompt must be complete, independently usable, and cinematically specific. Each shot should establish its full-frame composition, camera placement, correct character identity, posture and gaze, physical environment, light-source geography and facial-shadow direction, actions and emotional progression, authorized speech, natural sound, and cut. Preserve relevant detail from the storyboard-generation prompt. Do not replace shot direction with vague instructions such as 'follow the storyboard.' The official guide's normal generation-description length is a guide, not a ceiling; prioritize the information load of the scene. Do not pad with redundant prohibitions, repetitive plot summaries, or duplicate dialogue.
+**High-detail standard:** A prompt must be complete, independently usable, and cinematically specific. Each shot should establish its full-frame composition, camera placement, correct character identity, posture and gaze, physical environment, light-source geography and facial-shadow direction, actions and emotional progression, authorized speech, natural sound, and cut. Preserve all relevant detail from the storyboard-generation prompt; never claim independent verification against a rendered image. Do not replace shot direction with vague instructions such as 'follow the storyboard.' The official guide's normal generation-description length is a guide, not a ceiling; prioritize the information load of the scene. Do not pad with redundant prohibitions, repetitive plot summaries, or duplicate dialogue.
 
 ## 6. Single authoritative dialogue event rule
 
@@ -66,7 +66,7 @@ At a speaker change, the hard cut and the new speaking face must be established 
 
 Give every dialogue event a feasible onset and completion within its assigned shot. Begin promptly after the face is established; do not consume its available speech time with unnecessary looks, reaches, equipment operation, or lengthy setup. Use approximate times only where they clarify event ownership and boundaries; avoid forced phoneme-level micromanagement. Do not rush an emotionally important line to fit an impossible window.
 
-**Post-line release:** After the final authorized word, the speaker closes or relaxes the mouth naturally and performs a concrete silent action (gaze, posture, hands, restrained reaction) already supported by the storyboard. The soundtrack then returns to the explicitly permitted environmental sound. For a short speaking shot, prefer a prompt hard cut soon after natural completion, rather than a long unassigned conversational gap. A meaningful silent reaction remains intact if it is part of the approved storyboard; do not erase it solely to shorten silence.
+**Post-line release:** After the final authorized word, the speaker closes or relaxes the mouth naturally and performs a concrete silent action (gaze, posture, hands, restrained reaction) already supported by the written storyboard-generation prompt. The soundtrack then returns to the explicitly permitted environmental sound. For a short speaking shot, prefer a prompt hard cut soon after natural completion, rather than a long unassigned conversational gap. A meaningful silent reaction remains intact if it is part of the approved storyboard; do not erase it solely to shorten silence.
 
 **Between events:** Every interval without authorized speech has a defined audio state: environmental sound only, or true silence if the source requires it. Distinguish a brief pause *within* one continuous sentence from a silent gap *between* separate vocal events. Do not suggest 'he begins to answer,' 'she searches for words,' 'an exchange continues,' or similar invitations to generate unscripted speech.
 
@@ -100,15 +100,15 @@ For each dialogue event, state the speaker's intended emotion, vocal intensity, 
 
 ## 13. Storyboard full-frame reconstruction and first-frame lock
 
-`<Picture 0>` is ALWAYS a multi-panel **shot-planning** reference, not an image to animate. Every panel maps to a separate full-screen 16:9 cinematic shot in reading order. The output must never show the whole contact sheet, panel borders, captions, thumbnails, multiple animated panels, a zoom into a panel, or the storyboard itself as an opening frame. Each hard cut completely replaces the previous camera view.
+`<Picture 0>` is the multi-panel **shot-planning** reference that the user supplies directly to MiniMax, not to ChatGPT, and not an image to animate. Each panel/shot described in the written storyboard-generation prompt maps to a separate full-screen 16:9 cinematic shot in the specified order. The output must never show the whole contact sheet, panel borders, captions, thumbnails, multiple animated panels, a zoom into a panel, or the storyboard itself as an opening frame. Each hard cut completely replaces the previous camera view.
 
-Integrate the exact mandatory storyboard and identity wording from Stylistic Preferences.txt, adapted to the actual asset map. Additionally describe the **specific physical scene content** of Panel 1 at the start of `detailed_description` and again briefly in `[Shot 1]`: at **00:00.000**, the first generated frame is **already** the full-screen live-action reconstruction of that composition, at the approved camera position. No preliminary grid, pre-roll, unrelated frame, fade from another angle, or camera move into the composition. The video begins *inside the fictional world*, not on a storyboard page.
+Integrate the exact mandatory storyboard and identity wording from Stylistic Preferences.txt, adapted to the actual asset map. Additionally describe the **specific physical scene content** of the first panel/shot AS WRITTEN in the storyboard-generation prompt at the start of `detailed_description` and again briefly in `[Shot 1]`: at **00:00.000**, the first generated frame is **already** the full-screen live-action reconstruction of that composition, at the camera position specified in the written prompt. No preliminary grid, pre-roll, unrelated frame, fade from another angle, or camera move into the composition. The video begins *inside the fictional world*, not on a storyboard page.
 
 Use positive, concrete opening geometry (e.g., where the seated figure, window, desk, lamp, and bed are located) rather than relying only on repeated 'do not show grid' instructions. A storyboard reference is NOT automatically a concrete first-frame image in official reference terminology. If the grid persists after one or two focused repairs, stop near-identical retries and propose user-approved clean individual-shot references or an editorial opening-shot workaround where supported. Do not promise that text alone guarantees frame-zero compliance.
 
 ## 14. Cinematic visual fidelity and hard-cut priority
 
-Preserve the storyboard's exact camera direction, framing, spatial relationships, character visibility, prop continuity, and established light-source positions. Distinguish **camera direction** from a character's **eyeline**. Explicitly state the background behind the speaking face when that prevents a wrong-angle or wrong-person shot. Preserve dimensional facial lighting, natural skin, readable shadow-side eyes, motivated practical/window/monitor illumination, and controlled negative fill when compatible with the approved scene. Do not add lighting fixtures or move characters solely to create a prettier image.
+Preserve the written storyboard-generation prompt's specified camera direction, framing, spatial relationships, character visibility, prop continuity, and established light-source positions. Distinguish **camera direction** from a character's **eyeline**. Explicitly state the background behind the speaking face when that prevents a wrong-angle or wrong-person shot. Preserve dimensional facial lighting, natural skin, readable shadow-side eyes, motivated practical/window/monitor illumination, and controlled negative fill when compatible with the approved scene. Do not add lighting fixtures or move characters solely to create a prettier image.
 
 Hard cuts occur at the optimized times regardless of whether incidental motion would otherwise continue. For action-heavy shots, begin with essential information already visually established where the approved panel permits; avoid lengthy setup that steals the next speaker's shot. Do not invent extra inserts, duplicates, camera moves, or altered panel coverage to rescue timing.
 
@@ -120,10 +120,10 @@ Hard cuts occur at the optimized times regardless of whether incidental motion w
 
 ## 16. Mandatory pre-release audits (BLOCK on failure)
 
-**Source and visual audit**
-- Actual storyboard and original generation prompt inspected; authoritative dialogue, total duration, and reference map verified.
-- Every panel mapped exactly once to a full-screen shot, in original order, with no invented or omitted composition.
-- Opening frame at 00:00.000 is explicitly the full-screen physical Panel 1 scene; no contact sheet or animated storyboard.
+**Written-source and shot-plan audit**
+- Original storyboard-generation prompt read in full; authoritative dialogue, total duration, and reference map verified from the provided text. No storyboard image inspection is required or claimed.
+- Every written panel/shot mapped exactly once to a full-screen shot, in the specified order, with no invented or omitted composition.
+- Opening frame at 00:00.000 is explicitly the full-screen physical first-panel scene described by the prompt; no contact sheet or animated storyboard.
 - Correct identity from assigned turnaround; wardrobe, props, blocking, camera, lighting, and action continuity preserved.
 - All cut times feasible and within the approved duration (maximum 15 seconds); no preceding action overruns a speaking shot.
 
@@ -167,7 +167,7 @@ Hard cuts occur at the optimized times regardless of whether incidental motion w
 
 **J. Persistent failure after one or two targeted repairs:** Stop nearly identical reruns. Offer user-approved separate speaking-shot generations and editorial assembly, or a controlled external dialogue track where suitable. Neither guarantees success.
 
-When repairing, preserve already successful lines, shots, visual assets, and duration unless a broader rebuild is necessary or requested. If the user requests a complete rebuild, reconstruct from the authoritative script, actual storyboard, and asset map rather than patching old prose.
+When repairing, preserve already successful lines, shots, visual assets, and duration unless a broader rebuild is necessary or requested. If the user requests a complete rebuild, reconstruct from the authoritative written storyboard-generation prompt, any supplied script excerpt, and the asset map rather than patching old prose.
 
 ## 18. Evidence log and version control
 
@@ -183,13 +183,13 @@ Maintain a concise log for each test: clip identifier, failure symptom, revised 
 - Scene 9 Video 04: officer's statement was split and remote garbage responses appeared during Alex's shot; consolidate the officer's full final statement in Shot 3, leave Shot 4 silent, remove radio-conversation framing, and shorten unnecessary post-line intervals. User subsequently reported the videos generated without problems; do not claim which individual adjustment caused success.
 - Ben apartment storyboard: contact-sheet animation at opening; stronger physical first-frame description and sequential full-screen reconstruction proposed. A successful retest of this specific correction has not been separately established.
 
-**Scope:** This file supersedes Dialogue Reliability Protocol v1.4 only. Do not silently edit the official guidelines or Stylistic Preferences.txt. Continue to update this protocol with new observed failure patterns, but avoid accumulating duplicate rules; revise the applicable core rule and record the case briefly here.
+**Scope:** This file supersedes Dialogue Reliability Protocol v1.5 only. The text-only input rule applies throughout: never demand a storyboard image from the user in ChatGPT. Do not silently edit the official guidelines or Stylistic Preferences.txt. Continue to update this protocol with new observed failure patterns, but avoid accumulating duplicate rules; revise the applicable core rule and record the case briefly here.
 
 ## 19. Required conversion sequence (operational order)
 
 1. Read all four reference files in the required order; report inaccessible files.
-2. Verify storyboard, original generation prompt/script, total duration, and upload mapping.
-3. Inspect actual panels and create shot inventory, including exact first-frame geometry and visible mouths.
+2. Verify the original written storyboard-generation prompt, any supplied script excerpt, total duration, and MiniMax reference-upload mapping. Do not ask for a storyboard image.
+3. Extract a shot inventory from the written prompt, including specified first-frame geometry and speaker mouth visibility; flag omissions without claiming visual inspection.
 4. Create exact dialogue manifest, stable speaker IDs, device-audio permissions, and silent-interval map.
 5. Optimize shot timing and intact event placement only within permitted authority; escalate unresolved conflicts.
 6. Draft six detailed MiniMax sections, with concrete frame-zero reconstruction, correct speaker-first dialogue, natural vocal release, and explicit authorized audio states.
