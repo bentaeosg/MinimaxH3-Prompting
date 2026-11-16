@@ -2,16 +2,16 @@
 
 **Version:** 1.2  
 **Purpose:** Mandatory production and stylistic constraints for converting an approved storyboard image and its original storyboard-generation prompt directly into a MiniMax H3-compatible full-reference prompt.  
-**Status:** Companion rules; do not edit or supersede the official guidance or positive examples.
+**Status:** Companion rules; do not edit or supersede the official guidance.
 
 ## 1. Source documents and precedence
 
 Read these references before conversion:
 
 - [Official MiniMax Prompting Guidelines](https://github.com/bentaeosg/MinimaxH3-Prompting/blob/main/Official%20Minimax%20Prompting%20Guidelines.txt)
-- [MiniMax Positive Prompts](https://github.com/bentaeosg/MinimaxH3-Prompting/blob/main/Minimax%20Positive%20Prompts.txt)
 
-The official guidance governs valid format and notation. These companion rules govern the user's production workflow, constraints, and quality control. Positive examples illustrate structure, but are not authoritative about the current asset order, camera requirements, music, or subject mapping. When official syntax and a local preference appear to conflict, retain the official syntax and ask for clarification if the intended result remains ambiguous. Do not silently invent new MiniMax syntax.
+
+The official guidance governs valid format and notation. These companion rules govern the user's production workflow, constraints, and quality control. Do not silently invent new MiniMax syntax.
 
 ## 2. Role: converter, not director
 
